@@ -15,26 +15,30 @@ class UserController implements IBaseController<UserBusiness> {
       userBusiness.create(user, (error, result) => {
         if (error) {
           console.log(error);
-          res.send({ error: "error" });
+          res.status(500).send({ error: "error" });
         } else res.send({ success: "success" });
       });
     } catch (e) {
       console.log(e);
-      res.send({ error: "error in your request" });
+      res.status(500).send({ error: "error in your request" });
     }
   }
   update(req: express.Request, res: express.Response): void {
     try {
       var user: IUserModel = <IUserModel>req.body;
+      console.log(user);
+      delete user.username;
+      delete user.role;
+      delete user.permiss;
       var _id: string = req.params._id;
       var userBusiness = new UserBusiness();
       userBusiness.update(_id, user, (error, result) => {
-        if (error) res.send({ error: "error" });
+        if (error) res.status(500).send({ error: "error" });
         else res.send({ success: result });
       });
     } catch (e) {
       console.log(e);
-      res.send({ error: "error in your request" });
+      res.status(500).send({ error: "error in your request" });
     }
   }
   delete(req: express.Request, res: express.Response): void {
@@ -42,24 +46,24 @@ class UserController implements IBaseController<UserBusiness> {
       var _id: string = req.params._id;
       var userBusiness = new UserBusiness();
       userBusiness.delete(_id, (error, result) => {
-        if (error) res.send({ error: "error" });
+        if (error) res.status(500).send({ error: "error" });
         else res.send({ success: "success" });
       });
     } catch (e) {
       console.log(e);
-      res.send({ error: "error in your request" });
+      res.status(500).send({ error: "error in your request" });
     }
   }
   retrieve(req: express.Request, res: express.Response): void {
     try {
       var userBusiness = new UserBusiness();
       userBusiness.retrieve((error, result) => {
-        if (error) res.send({ error: "error" });
+        if (error) res.status(500).send({ error: "error" });
         else res.send(result);
       });
     } catch (e) {
       console.log(e);
-      res.send({ error: "error in your request" });
+      res.status(500).send({ error: "error in your request" });
     }
   }
   findById(req: express.Request, res: express.Response): void {
@@ -74,7 +78,7 @@ class UserController implements IBaseController<UserBusiness> {
       });
     } catch (e) {
       console.log(e);
-      res.send({ error: "error in your request" });
+      res.status(500).send({ error: "error in your request" });
     }
   }
   login(req, res, next) {
