@@ -1,7 +1,6 @@
 import { resolve } from "path";
 import { rejects } from "assert";
 import { UserBusiness } from "../business/userBusiness";
-
 const jwt = require("jsonwebtoken");
 
 class JwtUtil {
