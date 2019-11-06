@@ -1,10 +1,8 @@
 import { StatusRepository } from "../repository/statusRepository";
-import { UserModel } from "../models/userModel";
 import IStatusModel from "../models/interfaces/statusModel";
 import IStatusBusiness = require("./interfaces/StatusBusiness");
-import bcrypt from "bcrypt";
 
-export class UserBusiness implements IStatusBusiness {
+export class StatusBusiness implements IStatusBusiness {
   private _statusRepository: StatusRepository;
   private saltRounds = 7;
 
@@ -13,7 +11,6 @@ export class UserBusiness implements IStatusBusiness {
   }
 
   create(item: IStatusModel, callback: (error: any, result: any) => void) {
-    console.log(item.content);
     this._statusRepository.create(item, callback);
   }
 
@@ -48,4 +45,4 @@ export class UserBusiness implements IStatusBusiness {
     this._statusRepository.findUserName(username, callback);
   }
 }
-Object.seal(UserBusiness);
+Object.seal(StatusBusiness);

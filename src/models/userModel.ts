@@ -1,59 +1,56 @@
 import IUserModel = require("./interfaces/userModel");
 
 export class UserModel {
+  private _userModel: IUserModel;
+  constructor(userModel: IUserModel) {
+    this._userModel = userModel;
+  }
+  get username(): string {
+    return this._userModel.username;
+  }
 
-   private _userModel: IUserModel;
+  get email(): string {
+    return this._userModel.email;
+  }
 
-   constructor(heroModel: IUserModel) {
-       this._userModel = heroModel;
-   }
-   get username (): string {
-       return this._userModel.username;
-   }
+  get password(): string {
+    return this._userModel.password;
+  }
 
-   get email (): string {
-       return this._userModel.email;
-   }
+  get firstName(): string {
+    return this._userModel.firstName;
+  }
 
-   get password (): string {
-       return this._userModel.password;
-   }
+  get lastname(): string {
+    return this._userModel.lastName;
+  }
 
-   get firstName (): string {
-       return this._userModel.firstName;
-   }
+  get role(): any {
+    return this._userModel.role;
+  }
 
-   get lastname (): string {
-       return this._userModel.lastName;
-   }
+  get permiss(): any {
+    return this._userModel.permiss;
+  }
 
-   get role (): any {
-       return this._userModel.role;
-   }
+  get phone(): string {
+    return this._userModel.phone;
+  }
 
-   get permiss (): any {
-       return this._userModel.permiss;
-   }
+  get address(): string {
+    return this._userModel.address;
+  }
 
-   get phone (): string {
-       return this._userModel.phone;
-   }
-
-   get address (): string {
-       return this._userModel.address;
-   }
-
-   get createAt (): number {
+  get createAt(): number {
     return this._userModel.createAt;
-   }
+  }
 
-   get updateAt (): number {
+  get updateAt(): number {
     return this._userModel.updateAt;
-   }
+  }
 
-   get deleteAt (): number {
+  get deleteAt(): number {
     return this._userModel.deleteAt;
-   }
-
+  }
 }
 Object.seal(UserModel);

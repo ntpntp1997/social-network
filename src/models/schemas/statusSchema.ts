@@ -11,8 +11,8 @@ class StatusSchema {
       user_info: {
         username: { type: String },
         avatar: { type: String },
-        firstname: { type: String },
-        lastname: { type: String }
+        firstName: { type: String },
+        lastName: { type: String }
       },
       content: { type: String },
       comment_amount: { type: Number, default: 0 },

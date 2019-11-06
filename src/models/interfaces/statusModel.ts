@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 interface StatusModel extends mongoose.Document {
   _id: any;
-  userId: string;
+  user_id: string;
   user_info: {
     username: string;
     avatar: string;
-    firstname: string;
-    lastname: string;
+    firstName: string;
+    lastName: string;
   };
   content: string;
   comment_amount: number;

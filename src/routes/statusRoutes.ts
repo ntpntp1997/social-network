@@ -1,5 +1,7 @@
 import * as express from "express";
 const router = express.Router();
+import StatusController from "./../controllers/statusController";
+import { checkJwt } from "../middleware/checkJwt.Middelware";
 
 interface status {
   _id: string;
@@ -15,6 +17,7 @@ export default class StatusRoutes {
   constructor() {}
 
   get router() {
+    const controller = new StatusController();
     router.get("/status", (req, res) => {
       let status: status = {
         _id: "jsafh",
@@ -28,12 +31,17 @@ export default class StatusRoutes {
       };
       return res.json(status);
     });
-    router.post("/status", (req, res) => {
-      console.log(req.body);
-      let item: status = req.body;
-      console.log(item);
-      return res.json(item);
-    });
+    // router.post("/status", (req, res) => {
+    //   console.log(req.body);
+    //   let item: status = req.body;
+    //   console.log(item);
+    //   return res.json(item);
+    // });
+    // router.get("/status", controller.retrieve);
+    router.post("/status", [checkJwt], controller.create);
+    // router.put("/status/:_id", controller.update);
+    // router.get("/status/:_id", controller.findById);
+    // router.delete("/status/:_id", controller.delete);
     return router;
   }
 }

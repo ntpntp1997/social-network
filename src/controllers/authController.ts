@@ -1,6 +1,6 @@
 import IBaseController from "./interfaces/base/BaseController";
 import { UserBusiness } from "../business/userBusiness";
-export default class StatusController implements IBaseController<UserBusiness> {
+export default class AuthController implements IBaseController<UserBusiness> {
   retrieve: import("express").RequestHandler<
     import("express-serve-static-core").ParamsDictionary
   >;

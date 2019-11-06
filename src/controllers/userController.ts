@@ -7,7 +7,6 @@ import passPort from "passport";
 import { confToken } from "../config/config";
 import UserModel from "../models/interfaces/userModel";
 
-interface token {}
 class UserController implements IBaseController<UserBusiness> {
   create(req: express.Request, res: express.Response): void {
     try {
@@ -31,7 +30,7 @@ class UserController implements IBaseController<UserBusiness> {
       var userBusiness = new UserBusiness();
       userBusiness.update(_id, user, (error, result) => {
         if (error) res.send({ error: "error" });
-        else res.send({ success: "success" });
+        else res.send({ success: result });
       });
     } catch (e) {
       console.log(e);
