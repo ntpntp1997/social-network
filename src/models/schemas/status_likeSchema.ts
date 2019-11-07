@@ -1,12 +1,13 @@
 import DataAccess = require("../../config/dataAccess/DataAccess");
-import IStatusModel from "./../interfaces/statusModel";
+import IStatusLikeModel = require("../interfaces/status_likeModel");
 
 const mongoose = DataAccess.mongooseInstance;
 const mongooseConnection = DataAccess.mongooseConnection;
 
-class StatusSchema {
+class StatusLikeSchema {
   static get Schema(): any {
     var schema = (mongoose.Schema = {
+      status_id: { type: String },
       user_id: { type: String },
       user_info: {
         username: { type: String },
@@ -14,9 +15,6 @@ class StatusSchema {
         firstName: { type: String },
         lastName: { type: String }
       },
-      content: { type: String },
-      comment_amount: { type: Number, default: 0 },
-      like_amount: { type: Number, default: 0 },
       create_at: { type: Number, default: Date.now },
       update_at: { type: Number, default: null },
       delete_at: { type: Number, default: null }
@@ -25,8 +23,8 @@ class StatusSchema {
     return schema;
   }
 }
-var schema = mongooseConnection.model<IStatusModel>(
-  "Status",
-  StatusSchema.Schema
+var schema = mongooseConnection.model<IStatusLikeModel>(
+  "StatusLike",
+  StatusLikeSchema.Schema
 );
 export = schema;

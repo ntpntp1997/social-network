@@ -3,8 +3,8 @@ import mongoose = require("mongoose");
 interface IUserModel extends mongoose.Document {
   _id: any;
   email: string;
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   username: string;
   password: string;
   phone: string;
@@ -12,9 +12,9 @@ interface IUserModel extends mongoose.Document {
   avatar: string;
   role: [];
   permiss: [];
-  createAt: number;
-  updateAt: number;
-  deleteAt: number;
+  create_at: number;
+  update_at: number;
+  delete_at: number;
 }
 
 export = IUserModel;

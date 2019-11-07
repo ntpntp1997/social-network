@@ -10,8 +10,8 @@ import * as express from "express";
 interface userInfo {
   username: string;
   avatar: string;
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
 }
 
 class StatusController implements IBaseController<StatusBusiness> {
@@ -35,20 +35,42 @@ class StatusController implements IBaseController<StatusBusiness> {
       });
     } catch (e) {
       console.log(e);
-      res.status(500).send({ error: "error in your request" });
+      res.status(500).send({ error: transErrors.server_error });
     }
   }
-  update(req, res) {
+  update(req: express.Request, res: express.Response) {
     try {
       let status: IStatusModel = <IStatusModel>req.body;
-      return res.status(200).send(status);
+      var _id: string = req.params._id;
+      var statusBusiness = new StatusBusiness();
+      statusBusiness.update(_id, status, (error, result) => {
+        if (error) res.status(500).send({ error: transErrors.server_error });
+        else res.send({ success: result });
+      });
     } catch (error) {
       console.log(error);
       return res.status(500).send(error);
     }
   }
-  retrieve(req, res) {}
-  findById(req, res) {}
-  delete(req, res) {}
+  retrieve(req: express.Request, res: express.Response) {
+    try {
+      let statusBusiness = new StatusBusiness();
+      statusBusiness.retrieve((err, result) => {
+        if (err) res.status(500).send({ error: transErrors.server_error });
+        else res.send(result);
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send({ error: transErrors.server_error });
+    }
+  }
+  findById(req: express.Request, res: express.Response) {
+    try {
+    } catch (error) {}
+  }
+  delete(req: express.Request, res: express.Response) {
+    try {
+    } catch (error) {}
+  }
 }
 export = StatusController;

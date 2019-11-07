@@ -1,32 +1,31 @@
 import DataAccess = require("../../config/dataAccess/DataAccess");
-import IStatusModel from "./../interfaces/statusModel";
+import IRelationshipModel from "../interfaces/relationshipModel";
 
 const mongoose = DataAccess.mongooseInstance;
 const mongooseConnection = DataAccess.mongooseConnection;
 
-class StatusSchema {
+class RelationshipSchema {
   static get Schema(): any {
-    var schema = (mongoose.Schema = {
+    let schema = (mongoose.Schema = {
       user_id: { type: String },
-      user_info: {
+      friend_id: { type: String },
+      friend_info: {
         username: { type: String },
         avatar: { type: String },
-        firstName: { type: String },
+        firstname: { type: String },
         lastName: { type: String }
       },
-      content: { type: String },
-      comment_amount: { type: Number, default: 0 },
-      like_amount: { type: Number, default: 0 },
+      status: { type: String, default: "follow" }, // follow -> friend -> bestfriend
       create_at: { type: Number, default: Date.now },
       update_at: { type: Number, default: null },
       delete_at: { type: Number, default: null }
     });
-
     return schema;
   }
 }
-var schema = mongooseConnection.model<IStatusModel>(
-  "Status",
-  StatusSchema.Schema
+
+let schema = mongooseConnection.model<IRelationshipModel>(
+  "Relationship",
+  RelationshipSchema.Schema
 );
 export = schema;

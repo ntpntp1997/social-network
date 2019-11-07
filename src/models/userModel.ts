@@ -18,11 +18,11 @@ export class UserModel {
   }
 
   get firstName(): string {
-    return this._userModel.firstName;
+    return this._userModel.firstname;
   }
 
   get lastname(): string {
-    return this._userModel.lastName;
+    return this._userModel.lastname;
   }
 
   get role(): any {
@@ -42,15 +42,15 @@ export class UserModel {
   }
 
   get createAt(): number {
-    return this._userModel.createAt;
+    return this._userModel.create_at;
   }
 
   get updateAt(): number {
-    return this._userModel.updateAt;
+    return this._userModel.update_at;
   }
 
   get deleteAt(): number {
-    return this._userModel.deleteAt;
+    return this._userModel.delete_at;
   }
 }
 Object.seal(UserModel);

@@ -1,19 +1,18 @@
 import mongoose from "mongoose";
-interface IStatusModel extends mongoose.Document {
+interface IRelationshipModel extends mongoose.Document {
   _id: any;
   user_id: string;
-  user_info: {
+  friend_id: string;
+  friend_info: {
     username: string;
     avatar: string;
     firstname: string;
-    lastname: string;
+    lastName: string;
   };
-  content: string;
-  comment_amount: number;
-  like_amount: number;
+  status: string;
   create_at: number;
   update_at: number;
   delete_at: number;
 }
 
-export = IStatusModel;
+export = IRelationshipModel;
