@@ -3,6 +3,8 @@ import { UserModel } from "../models/userModel";
 import IUserModel from "../models/interfaces/userModel";
 import IUserBusiness = require("./interfaces/UserBusiness");
 import bcrypt from "bcrypt";
+import { transErrors } from "../lang/vi";
+import _ from "lodash";
 
 export class UserBusiness implements IUserBusiness {
   private _userRepository: UserRepository;
@@ -56,6 +58,20 @@ export class UserBusiness implements IUserBusiness {
     callback: (error: any, result: IUserModel) => void
   ) {
     this._userRepository.findUserName(username, callback);
+  }
+
+  findUser(value: string) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let user = await this._userRepository.findByName(value);
+        if (!user || _.size(user) < 1) {
+          return reject(transErrors.user_not_found);
+        }
+        resolve(user);
+      } catch (error) {
+        return reject(error);
+      }
+    });
   }
 }
 Object.seal(UserBusiness);

@@ -1,7 +1,6 @@
 import IStatusLikeBusiness from "./interfaces/status_likeBusiness";
 import { StatusLikeRepository } from "../repository/status_likeRepository";
 import IStatusLikeModel from "../models/interfaces/status_likeModel";
-import { resolve } from "path";
 export class StatusLikeBusiness implements IStatusLikeBusiness {
   private _statuslikeRepository: StatusLikeRepository;
 

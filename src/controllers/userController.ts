@@ -81,6 +81,18 @@ class UserController implements IBaseController<UserBusiness> {
       res.status(500).send({ error: "error in your request" });
     }
   }
+  async findUser(req: express.Request, res: express.Response) {
+    try {
+      let value: string = req.params.value;
+      const userBusiness = new UserBusiness();
+      let user = await userBusiness.findUser(value);
+      console.log(user);
+      return res.send(user);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send(error);
+    }
+  }
   login(req, res, next) {
     passPort.authenticate("local", (err, user, info) => {
       var token;
@@ -131,7 +143,7 @@ class UserController implements IBaseController<UserBusiness> {
         // }
         return res.status(200).json({
           token: token,
-          // "exp": tokenExpTime,
+          exp: tokenExpTime,
           refreshToken: refreshToken
         });
       });

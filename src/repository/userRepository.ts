@@ -16,6 +16,15 @@ export class UserRepository extends RepositoryBase<IUserModel> {
     // tslint:disable-next-line:object-literal-shorthand
     this._model.updateOne({ _id: _id }, item, callback).exec();
   }
+  findByName(value: string): any {
+    return this._model.find({
+      $or: [
+        { username: { $regex: value, $options: "i" } },
+        { firstname: { $regex: value, $options: "i" } },
+        { lastname: { $regex: value, $options: "i" } }
+      ]
+    });
+  }
 }
 
 Object.seal(UserRepository);

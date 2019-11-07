@@ -14,6 +14,7 @@ class UserRoutes {
     router.post("/users", controller.create);
     router.put("/users/:_id", [checkJwt], controller.update);
     router.get("/users/:_id", [checkJwt], controller.findById);
+    router.get("/find/:value", [checkJwt], controller.findUser);
     router.delete("/users/:_id", [checkJwt], controller.delete);
 
     return router;
