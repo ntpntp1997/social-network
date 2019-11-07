@@ -13,7 +13,7 @@ class RelationshipSchema {
         username: { type: String },
         avatar: { type: String },
         firstname: { type: String },
-        lastName: { type: String }
+        lastname: { type: String }
       },
       status: { type: String, default: "follow" }, // follow -> friend -> bestfriend
       create_at: { type: Number, default: Date.now },

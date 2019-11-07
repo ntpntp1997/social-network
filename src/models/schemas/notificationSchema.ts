@@ -13,7 +13,7 @@ class NotificationSchema {
         username: { type: String },
         avatar: { type: String },
         firstname: { type: String },
-        lastName: { type: String }
+        lastname: { type: String }
       },
       type: { type: String },
       content: { type: String },

@@ -12,8 +12,8 @@ class StatusLikeSchema {
       user_info: {
         username: { type: String },
         avatar: { type: String },
-        firstName: { type: String },
-        lastName: { type: String }
+        firstname: { type: String },
+        lastname: { type: String }
       },
       create_at: { type: Number, default: Date.now },
       update_at: { type: Number, default: null },

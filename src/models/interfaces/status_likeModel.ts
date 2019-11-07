@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 interface IStatusLikeModel extends mongoose.Document {
-  _id: string;
+  _id: any;
   status_id: string;
   user_id: string;
   user_info: {
     username: string;
     avatar: string;
     firstname: string;
-    lastName: string;
+    lastname: string;
   };
   create_at: number;
   update_at: number;

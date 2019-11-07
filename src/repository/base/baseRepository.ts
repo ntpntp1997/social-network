@@ -30,9 +30,7 @@ class RepositoryBase<T extends mongoose.Document>
   }
 
   delete(_id: string, callback: (error: any, result: any) => void) {
-    this._model.remove({ _id: this.toObjectId(_id) }, err =>
-      callback(err, null)
-    );
+    this._model.findOneAndRemove({ _id: _id }, err => callback(err, null));
   }
 
   findById(_id: string, callback: (error: any, result: T) => void) {

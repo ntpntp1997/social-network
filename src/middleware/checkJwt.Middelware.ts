@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import * as jwt from "jsonwebtoken";
 import { confToken } from "./../config/config";
-import { transErrors } from "../../lang/vi";
+import { transErrors } from "./../lang/vi";
 import JwtUtil = require("../utils/jwt.Utils");
 
 export const checkJwt = async (req, res: Response, next: NextFunction) => {

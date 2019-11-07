@@ -1,10 +1,10 @@
 import IBaseController from "./interfaces/base/BaseController";
-import { StatusBusiness } from "../business/statusBussiness";
+import { StatusBusiness } from "../business/statusBusiness";
 import IStatusModel from "../models/interfaces/statusModel";
 import { UserBusiness } from "../business/userBusiness";
 import IUserModel from "../models/interfaces/userModel";
 import JwtUtil from "../utils/jwt.Utils";
-import { transErrors } from "./../../lang/vi";
+import { transErrors } from "./../lang/vi";
 import * as express from "express";
 
 interface userInfo {

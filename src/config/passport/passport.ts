@@ -1,6 +1,6 @@
 import passPort from "passport";
 import passPortLocal from "passport-local";
-import { transErrors, transSuccess, transMail } from "./../../../lang/vi";
+import { transErrors, transSuccess, transMail } from "./../../lang/vi";
 import { UserBusiness } from "../../business/userBusiness";
 
 interface Greeter {
