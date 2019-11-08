@@ -16,7 +16,7 @@ interface status {
 export default class StatusRoutes {
   constructor() {}
 
-  get router() {
+  get routes() {
     const controller = new StatusController();
 
     router.get("/status", controller.retrieve);
