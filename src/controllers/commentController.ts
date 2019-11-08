@@ -5,7 +5,6 @@ import { transErrors } from "../lang/vi";
 import ICommentModel from "../models/interfaces/commentModel";
 import IUserInfo from "../entities/userInfo";
 import JwtUtil from "./../utils/jwt.Utils";
-import { RSA_NO_PADDING } from "constants";
 
 class CommentCotroller implements IBaseController<CommentBusiness> {
   constructor() {}
@@ -49,9 +48,9 @@ class CommentCotroller implements IBaseController<CommentBusiness> {
           return res.status(500).send({ message: transErrors.user_expried });
         } else {
           commentBusiness.update(commentId, item, (err, resus) => {
-            if (err)
+            if (err) {
               res.status(500).send({ message: transErrors.server_error });
-            else res.status(200).send(resus);
+            } else res.status(200).send(resus);
           });
         }
       }

@@ -1,3 +1,6 @@
 node_modules
 dist
 server-chat
+view/.DS_Store
+.DS_Store
+view
