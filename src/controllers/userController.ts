@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 import passPort from "passport";
 import { confToken } from "../config/config";
 import UserModel from "../models/interfaces/userModel";
+import UserViewModel = require("../viewModel/userViewModel");
 
 class UserController implements IBaseController<UserBusiness> {
   create(req: express.Request, res: express.Response): void {
@@ -59,7 +60,26 @@ class UserController implements IBaseController<UserBusiness> {
       var userBusiness = new UserBusiness();
       userBusiness.retrieve((error, result) => {
         if (error) res.status(500).send({ error: "error" });
-        else res.send(result);
+        else {
+          let userAll = [];
+          result.forEach(item => {
+            let a: UserViewModel = {
+              _id: item._id,
+              email: item.email,
+              firstname: item.firstname,
+              lastname: item.lastname,
+              username: item.username,
+              phone: item.phone,
+              address: item.address,
+              avatar: item.avatar,
+              create_at: item.create_at,
+              update_at: item.update_at
+            };
+            userAll.push(<UserViewModel>a);
+          });
+          //console.log(userAll);
+          return res.send(userAll);
+        }
       });
     } catch (e) {
       console.log(e);
@@ -84,10 +104,29 @@ class UserController implements IBaseController<UserBusiness> {
   async findUser(req: express.Request, res: express.Response) {
     try {
       let value: string = req.params.value;
+      let userAll = [];
       const userBusiness = new UserBusiness();
-      let user = await userBusiness.findUser(value);
-      console.log(user);
-      return res.send(user);
+      let user: any = await userBusiness.findUser(value);
+      if (user) {
+        user.forEach(item => {
+          if (item._id != req["decoded"].id) {
+            let a: UserViewModel = {
+              _id: item._id,
+              email: item.email,
+              firstname: item.firstname,
+              lastname: item.lastname,
+              username: item.username,
+              phone: item.phone,
+              address: item.address,
+              avatar: item.avatar,
+              create_at: item.create_at,
+              update_at: item.update_at
+            };
+            userAll.push(<UserViewModel>a);
+          }
+        });
+      }
+      return res.send(userAll);
     } catch (error) {
       console.log(error);
       return res.status(500).send(error);

@@ -7,7 +7,7 @@ interface ICommentLikeModel extends mongoose.Document {
     username: string;
     avatar: string;
     firstname: string;
-    lastName: string;
+    lastname: string;
   };
   create_at: number;
   update_at: number;

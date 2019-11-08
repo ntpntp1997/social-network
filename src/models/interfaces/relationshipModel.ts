@@ -7,7 +7,7 @@ interface IRelationshipModel extends mongoose.Document {
     username: string;
     avatar: string;
     firstname: string;
-    lastName: string;
+    lastname: string;
   };
   status: string;
   create_at: number;

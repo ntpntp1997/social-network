@@ -5,6 +5,7 @@ import IUserBusiness = require("./interfaces/UserBusiness");
 import bcrypt from "bcrypt";
 import { transErrors } from "../lang/vi";
 import _ from "lodash";
+import UserViewModel from "../viewModel/userViewModel";
 
 export class UserBusiness implements IUserBusiness {
   private _userRepository: UserRepository;
