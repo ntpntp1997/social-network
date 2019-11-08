@@ -5,8 +5,7 @@ import IRelationshipModel from "../models/interfaces/relationshipModel";
 import JwtUtil = require("../utils/jwt.Utils");
 import IUserModel = require("../models/interfaces/userModel");
 import IUserInfo from "../entities/userInfo";
-import { transSuccess } from "../lang/vi";
-interface updateStatus {}
+import { transSuccess, transErrors } from "../lang/vi";
 
 class RelationshipController implements IBaseController<RelationshipBusiness> {
   constructor() {}
@@ -71,8 +70,32 @@ class RelationshipController implements IBaseController<RelationshipBusiness> {
       return res.status(500).send(error);
     }
   }
-  delete() {}
-  findById() {}
+  delete(req: express.Request, res: express.Response) {
+    try {
+      let relationshipId = req.params._id;
+      const relationshipBusiness = new RelationshipBusiness();
+      relationshipBusiness.delete(relationshipId, (err, result) => {
+        if (err) res.status(500).send({ message: transErrors.server_error });
+        else res.status(200).send({ message: transSuccess.success });
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send(error);
+    }
+  }
+  findById(req: express.Request, res: express.Response) {
+    try {
+      let relationshipId = req.params._id;
+      const relationshipBusiness = new RelationshipBusiness();
+      relationshipBusiness.findById(relationshipId, (err, result) => {
+        if (err) res.status(500).send({ message: transErrors.server_error });
+        else res.status(200).send(result);
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send(error);
+    }
+  }
 }
 
 export = RelationshipController;
