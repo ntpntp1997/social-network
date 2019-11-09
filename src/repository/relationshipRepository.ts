@@ -7,7 +7,7 @@ class RelationshipRepositpry extends RepositoryBase<IRelationshipModel> {
     super(RelationshipSchema);
   }
   findByName(value: string) {
-    this._model.find({
+    return this._model.find({
       $or: [
         { username: { $regex: value } },
         { firstname: { $regex: value } },

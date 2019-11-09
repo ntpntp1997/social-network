@@ -6,6 +6,9 @@ export class CommentRepository extends RepositoryBase<ICommentModel> {
   constructor() {
     super(CommentSchema);
   }
+  findByStatusId(statusId) {
+    return this._model.find({ status_id: statusId }).exec();
+  }
 }
 
 Object.seal(CommentRepository);

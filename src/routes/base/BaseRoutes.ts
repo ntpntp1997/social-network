@@ -5,6 +5,8 @@ import UserRoutes = require("../userRoutes");
 import PassPortInit = require("../../config/passport/passport");
 import LikeStatusRouter = require("../likeStatusRouter");
 import RelationshipRouter from "./../friendRouter";
+import CommentRoutes from "../commentRoutes";
+import NotificationRoutes from "../notificationRouter";
 var app = express();
 class BaseRoutes {
   get routes() {
@@ -13,6 +15,8 @@ class BaseRoutes {
     app.use("/", new StatusRoutes().routes);
     app.use("/", new LikeStatusRouter().routes);
     app.use("/", new RelationshipRouter().routes);
+    app.use("/", new CommentRoutes().routes);
+    app.use("/", new NotificationRoutes().routes);
     return app;
   }
 }

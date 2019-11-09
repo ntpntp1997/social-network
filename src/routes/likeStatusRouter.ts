@@ -3,7 +3,7 @@ import * as express from "express";
 import { checkJwt } from "../middleware/checkJwt.Middelware";
 const router = express.Router();
 
-class LikeStatusRouter {
+class LikeStatusRoutes {
   private status_likeController: StatusLikeController;
   constructor() {
     this.status_likeController = new StatusLikeController();
@@ -15,4 +15,4 @@ class LikeStatusRouter {
     return router;
   }
 }
-export = LikeStatusRouter;
+export = LikeStatusRoutes;

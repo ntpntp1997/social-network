@@ -6,7 +6,7 @@ import ICommentModel from "../models/interfaces/commentModel";
 import IUserInfo from "../entities/userInfo";
 import JwtUtil from "./../utils/jwt.Utils";
 
-class CommentCotroller implements IBaseController<CommentBusiness> {
+class CommentController implements IBaseController<CommentBusiness> {
   constructor() {}
 
   /**
@@ -35,26 +35,33 @@ class CommentCotroller implements IBaseController<CommentBusiness> {
    * user edit comment
    */
   update(req: express.Request, res: express.Response) {
-    let commentId = req.params._id;
-    let item: ICommentModel = <ICommentModel>req.body;
-    let userId = req["decoded"].id;
-    let commentBusiness = new CommentBusiness();
-    // check user can edit comment
-    commentBusiness.findById(commentId, (err, result) => {
-      if (err) {
-        return res.status(500).send({ message: transErrors.server_error });
-      } else {
-        if (result.user_id == userId) {
-          return res.status(500).send({ message: transErrors.user_expried });
+    try {
+      let commentId = req.params._id;
+
+      let userId = req["decoded"].id;
+      let commentBusiness = new CommentBusiness();
+      // check user can edit comment
+      commentBusiness.findById(commentId, (err, result) => {
+        if (err) {
+          return res.status(500).send({ message: transErrors.server_error });
         } else {
-          commentBusiness.update(commentId, item, (err, resus) => {
-            if (err) {
-              res.status(500).send({ message: transErrors.server_error });
-            } else res.status(200).send(resus);
-          });
+          if (result.user_id != userId) {
+            return res.status(500).send({ message: transErrors.user_expried });
+          } else {
+            result.content = req.body.content;
+            result.update_at = Date.now();
+            commentBusiness.update(commentId, result, (err, resus) => {
+              if (err) {
+                res.status(500).send({ message: transErrors.server_error });
+              } else res.status(200).send(resus);
+            });
+          }
         }
-      }
-    });
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send({ message: transErrors.server_error });
+    }
   }
 
   /**
@@ -68,5 +75,16 @@ class CommentCotroller implements IBaseController<CommentBusiness> {
   delete(req: express.Request, res: express.Response) {}
 
   findById(req: express.Request, res: express.Response) {}
+
+  async findByStatusId(req: express.Request, res: express.Response) {
+    try {
+      let commentBusiness = new CommentBusiness();
+      let item = await commentBusiness.findByStatusId(req.params._id);
+      return res.send(item);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send(error);
+    }
+  }
 }
-export = CommentCotroller;
+export = CommentController;

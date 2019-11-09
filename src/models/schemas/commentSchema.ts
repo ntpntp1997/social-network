@@ -17,8 +17,8 @@ class CommentSchema {
       },
       like_amount: { type: Number, default: 0 },
       content: { type: String },
-      update_at: { type: Number, default: Date.now },
-      create_at: { type: Number, default: null },
+      create_at: { type: Number, default: Date.now },
+      update_at: { type: Number, default: null },
       delete_at: { type: Number, default: null }
     });
     return schema;

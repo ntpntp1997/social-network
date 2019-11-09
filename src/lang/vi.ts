@@ -16,6 +16,9 @@ export const transValidation = {
 };
 
 export const transErrors = {
+  noti_null:
+    "bạn không có thông báo nào hãy tiếp tục tương tác với bạn bè của mình",
+  comment_null: "Bài viết chưa có bình luận nào",
   account_in_use: "email already",
   account_undifine: "tai khoan nay khong ton tai",
   user_current_password_failed: "Mat khau hien tai khong chinh xac",
