@@ -3,6 +3,7 @@ import ICommentBusiness = require("./interfaces/commentBusiness");
 import ICommentModel from "./../models/interfaces/commentModel";
 import _ from "lodash";
 import { transErrors } from "../lang/vi";
+import { resolve } from "path";
 
 export class CommentBusiness implements ICommentBusiness {
   private _commentRepository: CommentRepository;
@@ -41,7 +42,7 @@ export class CommentBusiness implements ICommentBusiness {
       try {
         let item = await this._commentRepository.findByStatusId(statusId);
         if (_.size(item) < 1) {
-          return reject(transErrors.comment_null);
+          resolve(transErrors.comment_null);
         }
         resolve(item);
       } catch (error) {

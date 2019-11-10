@@ -6,3 +6,9 @@ export const confToken = {
   tokenLife: 86400, // 15 phút = 900
   refreshTokenLife: 86400 // một ngày
 };
+
+export const app = {
+  avatar_directory: "src/public/uploads",
+  avatar_type: ["image/png", "image/jpg", "image/jpeg"],
+  avatar_limit_size: 10485760 // 2mb
+};

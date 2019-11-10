@@ -23,9 +23,15 @@ import { MainLayoutComponent } from './_view/page/main-layout/main-layout.compon
 import { TopbarComponent } from './_view/component/topbar/topbar.component';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationService } from './_core/services/auth/authentication.service';
-import { AuthGuardService } from './_core/guard/auth-guard.service';
+import {
+    AuthGuardService,
+    LoginGuardService,
+} from './_core/guard/auth-guard.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
+declare var $: any;
+console.log(`jQuery version: ${$.fn.jquery}`);
 @NgModule({
     declarations: [
         AppComponent,
@@ -48,8 +54,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
         MainLayoutComponent,
         TopbarComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-    providers: [AuthenticationService, AuthGuardService],
+    imports: [
+        BrowserModule,
+        CommonModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+    ],
+    providers: [AuthenticationService, AuthGuardService, LoginGuardService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

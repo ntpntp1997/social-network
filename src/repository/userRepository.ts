@@ -25,6 +25,9 @@ export class UserRepository extends RepositoryBase<IUserModel> {
       ]
     });
   }
+  updateUser(id, item) {
+    return this._model.findByIdAndUpdate(id, item).exec();
+  }
 }
 
 Object.seal(UserRepository);

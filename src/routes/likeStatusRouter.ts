@@ -12,6 +12,7 @@ class LikeStatusRoutes {
   get routes() {
     let controller = this.status_likeController;
     router.post("/like/status", [checkJwt], controller.create);
+    router.post("/likecheck", [checkJwt], controller.checklike);
     return router;
   }
 }

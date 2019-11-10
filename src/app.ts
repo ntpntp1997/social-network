@@ -26,6 +26,7 @@ export class App {
     // config passportjs
     this.app.use(passPort.initialize());
     this.app.use(passPort.session());
+    this.app.use(express.static("./src/public"));
   }
   public router() {
     this.app.use(Middlewares.configuration);

@@ -9,14 +9,20 @@ import { MainLayoutComponent } from './_view/page/main-layout/main-layout.compon
 import { VideoComponent } from './_view/page/timeline/video/video.component';
 import { FriendComponent } from './_view/page/timeline/friend/friend.component';
 import { MessagesComponent } from './_view/page/messages/messages.component';
+import {
+    AuthGuardService,
+    LoginGuardService,
+} from './_core/guard/auth-guard.service';
 
 const routes: Routes = [
     {
         path: '',
         component: MainLayoutComponent,
+        canActivate: [AuthGuardService],
         children: [
             {
                 path: '',
+                pathMatch: 'full',
                 component: NewfeedComponent,
             },
             {
@@ -49,6 +55,7 @@ const routes: Routes = [
     },
     {
         path: 'login',
+        canActivate: [LoginGuardService],
         component: AuthComponent,
     },
 ];

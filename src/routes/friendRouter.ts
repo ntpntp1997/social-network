@@ -15,6 +15,7 @@ class RelationshipRoutes {
     router.put("/friends/:_id", [checkJwt], controller.update);
     router.get("/friends/:_id", [checkJwt], controller.findById);
     router.delete("/friends/:_id", [checkJwt], controller.delete);
+    router.get("/list", [checkJwt], controller.friendlist);
 
     return router;
   }

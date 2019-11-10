@@ -96,6 +96,16 @@ class RelationshipController implements IBaseController<RelationshipBusiness> {
       return res.status(500).send(error);
     }
   }
+  async friendlist(req: express.Request, res: express.Response) {
+    try {
+      const relationshipBusiness = new RelationshipBusiness();
+      let list = await relationshipBusiness.friendlist(req["decoded"].id);
+      return res.status(200).send(list);
+    } catch (e) {
+      console.log(e);
+      return res.status(500).send(e);
+    }
+  }
 }
 
 export = RelationshipController;

@@ -4,7 +4,7 @@
         <h4 class="widget-title">Friends</h4>
         <div id="searchDir"></div>
         <ul id="people-list" class="friendz-list">
-            <li>
+            <li *ngFor="let item of friendlist">
                 <figure>
                     <img src="assets/images/resources/friend-avatar.jpg" alt="">
                     <span class="status f-online"></span>

@@ -11,9 +11,10 @@ class StatusSchema {
       user_info: {
         username: { type: String },
         avatar: { type: String },
-        firstName: { type: String },
-        lastName: { type: String }
+        firstname: { type: String },
+        lastname: { type: String }
       },
+      photo: { type: String, default: null },
       content: { type: String },
       comment_amount: { type: Number, default: 0 },
       like_amount: { type: Number, default: 0 },

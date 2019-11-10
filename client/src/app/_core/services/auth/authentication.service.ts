@@ -3,12 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { Router } from '@angular/router';
+import { RequestJWTService } from '../../../_base/services/request_base/requestJWT.service';
 
 export interface UserDetails {
     _id: string;
     email: string;
-    name: string;
-    role: string;
+    username: string;
     exp: number;
     iat: number;
 }
@@ -30,7 +30,11 @@ export class AuthenticationService {
     private token: string;
     private refreshToken: string;
 
-    constructor(private http: HttpClient, private router: Router) {}
+    constructor(
+        private http: HttpClient,
+        private router: Router,
+        private req: RequestJWTService
+    ) {}
 
     private saveToken(token: string, refreshToken: string): void {
         localStorage.setItem('mean-token', token);
@@ -80,6 +84,12 @@ export class AuthenticationService {
         } else {
             return null;
         }
+    }
+    public getUserInfo(UserInfo) {
+        const a: UserDetails = this.getUserDetailsWithToken();
+        this.req.requestHttp('get', `users/${a._id}`).subscribe(data => {
+            UserInfo = data;
+        });
     }
 
     public isLoggedIn(): boolean {

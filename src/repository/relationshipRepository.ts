@@ -15,5 +15,8 @@ class RelationshipRepositpry extends RepositoryBase<IRelationshipModel> {
       ]
     });
   }
+  friendlist(id) {
+    return this._model.find({ user_id: id });
+  }
 }
 export = RelationshipRepositpry;

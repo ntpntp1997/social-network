@@ -15,7 +15,7 @@ class UserSchema {
       password: { type: String, required: true },
       phone: { type: String, default: null },
       address: { type: String, default: null },
-      avatar: { type: String, default: null },
+      avatar: { type: String, default: "images/user.jpg" },
       role: [],
       permiss: [],
       create_at: { type: Number, default: Date.now },

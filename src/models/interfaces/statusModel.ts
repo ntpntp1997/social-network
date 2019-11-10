@@ -8,6 +8,7 @@ interface IStatusModel extends mongoose.Document {
     firstname: string;
     lastname: string;
   };
+  photo: string;
   content: string;
   comment_amount: number;
   like_amount: number;

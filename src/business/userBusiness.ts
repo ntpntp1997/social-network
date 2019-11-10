@@ -74,5 +74,8 @@ export class UserBusiness implements IUserBusiness {
       }
     });
   }
+  updateUser(id, item) {
+    return this._userRepository.updateUser(id, item);
+  }
 }
 Object.seal(UserBusiness);

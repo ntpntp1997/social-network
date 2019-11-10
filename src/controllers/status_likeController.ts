@@ -43,6 +43,20 @@ class StatusLikeController implements BaseController<StatusLikeBusiness> {
       return res.status(500).send({ error: transErrors.server_error });
     }
   }
+  async checklike(req: express.Request, res: express.Response) {
+    let _statuslikeBusiness = new StatusLikeBusiness();
+    let statusService = new StatusService();
+    let user_id = req["decoded"].id;
+    let status_id = req.body.status_id;
+    let checkLiked: IStatusLikeModel = <IStatusLikeModel>(
+      await _statuslikeBusiness.checkHadLike(status_id, user_id)
+    );
+    if (checkLiked) {
+      return res.send(true);
+    }
+    return res.send(false);
+  }
+
   update(req: express.Request, res: express.Response) {}
   findById(req: express.Request, res: express.Response) {}
   retrieve(req: express.Request, res: express.Response) {}
