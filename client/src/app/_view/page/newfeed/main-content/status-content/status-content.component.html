@@ -1,6 +1,6 @@
 <div class="loadMore">
-    <div class="central-meta item" *ngFor="let item of this.status">
-        <div class="user-post">
+    <div class="central-meta item" *ngFor="let a of this.statusId">
+        <div class="user-post" *ngFor="let item of this.status[a]" >
             <div class="friend-info">
                 <figure>
                     <img src="http://localhost:3000/{{item.user_info.avatar}}" alt="">

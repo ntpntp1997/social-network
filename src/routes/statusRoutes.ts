@@ -22,7 +22,7 @@ export default class StatusRoutes {
     router.get("/status", controller.retrieve);
     router.post("/status", [checkJwt], controller.create);
     // router.put("/status/:_id", controller.update);
-    // router.get("/status/:_id", controller.findById);
+    router.get("/status/:_id", controller.getbyuserId);
     // router.delete("/status/:_id", controller.delete);
     return router;
   }

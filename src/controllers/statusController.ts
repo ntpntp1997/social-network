@@ -66,7 +66,7 @@ class StatusController implements IBaseController<StatusBusiness> {
             if (error) {
               console.log(error);
               return res.status(500).send({ error: transErrors.server_error });
-            } else res.send({ success: "success" });
+            } else res.send(result);
           });
         } else {
           res.status(500).send({ error: transValidation.ticket_text });
@@ -117,6 +117,19 @@ class StatusController implements IBaseController<StatusBusiness> {
   delete(req: express.Request, res: express.Response) {
     try {
     } catch (error) {}
+  }
+  async getbyuserId(req: express.Request, res: express.Response) {
+    try {
+      let id = req.params._id;
+      console.log(id);
+      let statusBusiness = new StatusBusiness();
+      let item = await statusBusiness.getbyUserId(id);
+      console.log(item);
+      return res.status(200).send(item);
+    } catch (error) {
+      console.log(error);
+      return res.status(200).send(error);
+    }
   }
 }
 export = StatusController;

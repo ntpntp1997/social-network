@@ -18,6 +18,17 @@ export class StatusBusiness implements IStatusBusiness {
     this._statusRepository.retrieve(callback);
   }
 
+  getbyUserId(id) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let item = await this._statusRepository.getByUserID(id);
+        resolve(item);
+      } catch (error) {
+        return reject(error);
+      }
+    });
+  }
+
   update(
     _id: string,
     item: IStatusModel,

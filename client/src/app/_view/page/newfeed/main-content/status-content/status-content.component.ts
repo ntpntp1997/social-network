@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RequestJWTService } from '../../../../../_base/services/request_base/requestJWT.service';
 import { AuthenticationService } from '../../../../../_core/services/auth/authentication.service';
 import { Router } from '@angular/router';
+import _ from 'lodash';
+import { StatusService } from '../../../../../_core/services/status.service';
 
 @Component({
     selector: 'app-status-content',
@@ -11,18 +13,40 @@ import { Router } from '@angular/router';
 export class StatusContentComponent implements OnInit {
     public comment = [];
     public status = [];
+    public statusId = [];
     public UserInfo;
     public key;
+    public show;
     constructor(
         private req: RequestJWTService,
         private auth: AuthenticationService,
-        private route: Router
+        private route: Router,
+        private statusS: StatusService
     ) {
         this.getStatus();
     }
 
     ngOnInit() {
+        this.statusS.IstatusId.subscribe(d => {
+            this.statusId = d;
+        });
+        this.statusS.Icomment.subscribe(d => {
+            this.comment = d;
+        });
+        this.statusS.Istatus.subscribe(d => {
+            this.status = d;
+        });
         this.getUserInfo();
+    }
+    public share(item) {
+        this.statusId.push(item._id);
+        this.status[item._id] = [item];
+        this.reload();
+    }
+    reload() {
+        this.show = false;
+        console.log(this.show);
+        this.getStatus();
     }
     getUserInfo() {
         this.key = this.auth.getUserDetailsWithToken();
@@ -48,8 +72,8 @@ export class StatusContentComponent implements OnInit {
                         .requestHttp('post', 'likecheck', body)
                         .subscribe(kq => {
                             item.liked = kq;
-                            this.status.push(item);
-                            console.log(this.status);
+                            this.statusS.addStatus(item);
+                            this.statusS.addStatusId(item._id);
                             this.req
                                 .requestHttp(
                                     'get',
@@ -57,14 +81,9 @@ export class StatusContentComponent implements OnInit {
                                 )
                                 .subscribe(
                                     comment => {
-                                        if (this.comment[item._id]) {
-                                            this.comment[item._id].push(
-                                                comment
-                                            );
-                                        } else {
-                                            this.comment[item._id] = [comment];
-                                        }
-                                        console.log(this.comment[item._id]);
+                                        this.statusS.addComment(item, comment);
+                                        this.show = true;
+                                        console.log(this.show);
                                     },
                                     err => {
                                         // if (this.comment[item._id]) {
@@ -88,7 +107,15 @@ export class StatusContentComponent implements OnInit {
             status_id: id,
         };
         this.req.requestHttp('post', 'like/status', a).subscribe(data => {
-            location.reload();
+            // tslint:disable-next-line:triple-equals
+            if (this.status[id][0].liked) {
+                _.update(this.status[id][0], 'like_amount', n => n - 1);
+                _.update(this.status[id][0], 'liked', n => (n = false));
+            } else {
+                _.update(this.status[id][0], 'like_amount', n => n + 1);
+                _.update(this.status[id][0], 'liked', n => (n = true));
+            }
         });
     }
+    commentStatus() {}
 }

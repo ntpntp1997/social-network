@@ -6,6 +6,9 @@ export class StatusRepository extends RepositoryBase<IStatusModel> {
   constructor() {
     super(StatusSchema);
   }
+  getByUserID(id) {
+    return this._model.find({ user_id: id }).exec();
+  }
 }
 
 Object.seal(StatusRepository);
