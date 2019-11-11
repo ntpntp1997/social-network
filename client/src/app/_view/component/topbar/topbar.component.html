@@ -1,4 +1,4 @@
-<div class="topbar stick">
+<div class="topbar stick" *ngIf="isDataAvailable">
     <div class="logo">
         <a title="" [routerLink]="['/']" routerLinkActive="router-link-active">NTP</a
         >
@@ -17,7 +17,6 @@
                 <button data-ripple><i class="ti-search"></i></button>
             </form>
             <div
-                ng
                 *ngIf="ortUser"
                 class="ass"
                 style="background-color: #fff; position: absolute; top: 60px; left: 0; display: none;"
@@ -277,7 +276,7 @@
 </li>
 </ul>
 <div class="user-img">
-    <img src="assets/images/resources/admin.jpg" alt="" />
+    <img *ngIf="this.user.avatar" src="http://localhost:3000/{{ this.user.avatar }}" width="40px" height="40px" alt="" />
     <span class="status f-online"></span>
     <div class="user-setting">
         <a href="#" title=""><span class="status f-online"></span>online</a

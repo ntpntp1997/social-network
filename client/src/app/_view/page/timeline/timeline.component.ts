@@ -15,6 +15,7 @@ export class TimelineComponent implements OnInit {
     public UserInfo: any;
     public user;
     private paramss;
+    dataAvible = false;
     public isUser: boolean;
     constructor(
         private userinfo: UserInfoService,
@@ -23,6 +24,7 @@ export class TimelineComponent implements OnInit {
         private routeA: ActivatedRoute,
         private req: RequestJWTService
     ) {
+        this.route.routeReuseStrategy.shouldReuseRoute = () => false;
         this.routeA.params.subscribe(params => {
             this.paramss = params.id;
             this.ngOnInit(); // reset and set based on new parameter this time
@@ -38,7 +40,7 @@ export class TimelineComponent implements OnInit {
             data => {
                 this.UserInfo = data;
                 // tslint:disable-next-line:triple-equals
-                if (this.UserInfo._id == this.paramss) {
+                if (this.UserInfo._id == this.routeA.snapshot.params.id) {
                     this.isUser = true;
                 } else {
                     this.isUser = false;
@@ -49,14 +51,17 @@ export class TimelineComponent implements OnInit {
                 console.log(err);
             }
         );
-        this.req.requestHttp('get', `users/${this.paramss}`).subscribe(
-            data => {
-                this.user = data;
-            },
-            err => {
-                this.route.navigateByUrl('/');
-                console.log(err);
-            }
-        );
+        this.req
+            .requestHttp('get', `users/${this.routeA.snapshot.params.id}`)
+            .subscribe(
+                data => {
+                    this.user = data;
+                    this.dataAvible = true;
+                },
+                err => {
+                    this.route.navigateByUrl('/');
+                    console.log(err);
+                }
+            );
     }
 }

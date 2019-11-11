@@ -29,9 +29,7 @@ export class MainComponent implements OnInit {
         private Arouter: ActivatedRoute
     ) {
         this.Arouter.params.subscribe(params => {
-            this.paramss = params.id;
-            this.ngOnInit();
-            this.getStatus(); // reset and set based on new parameter this time
+            this.paramss = params.id; // reset and set based on new parameter this time
         });
     }
 
@@ -68,37 +66,29 @@ export class MainComponent implements OnInit {
                             item.liked = kq;
                             this.statusId.unshift(item._id);
                             this.status[item._id] = [item];
-                            this.req
-                                .requestHttp(
-                                    'get',
-                                    `/comment/status/${item._id}`
-                                )
-                                .subscribe(
-                                    comment => {
-                                        comment.forEach(element => {
-                                            if (this.comment[item._id]) {
-                                                this.comment[item._id].unshift(
-                                                    element
-                                                );
-                                            } else {
-                                                this.comment[item._id] = [
-                                                    element,
-                                                ];
-                                            }
-                                        });
-
-                                        console.log(this.comment);
-                                    },
-                                    err => {
-                                        // if (this.comment[item._id]) {
-                                        //     this.comment[item._id].push(err.error.text);
-                                        // } else {
-                                        //     this.comment[item._id] = [err.error.text];
-                                        // }
-                                        // console.log(this.comment[item._id]);
-                                    }
-                                );
                         });
+                    this.req
+                        .requestHttp('get', `/comment/status/${item._id}`)
+                        .subscribe(
+                            comment => {
+                                comment.forEach(element => {
+                                    if (this.comment[item._id]) {
+                                        this.comment[item._id].unshift(element);
+                                    } else {
+                                        this.comment[item._id] = [element];
+                                    }
+                                    console.log(this.comment);
+                                });
+                            },
+                            err => {
+                                // if (this.comment[item._id]) {
+                                //     this.comment[item._id].push(err.error.text);
+                                // } else {
+                                //     this.comment[item._id] = [err.error.text];
+                                // }
+                                // console.log(this.comment[item._id]);
+                            }
+                        );
                 });
             },
             err => {

@@ -24,6 +24,22 @@ class StatusService {
       });
     });
   }
+  commentStatus(statusId) {
+    return new Promise((resolve, reject) => {
+      let _statusBusiness = new StatusBusiness();
+      _statusBusiness.findById(statusId, (err, result) => {
+        if (err) return reject(err);
+        else {
+          result.comment_amount = result.comment_amount + 1;
+          result.update_at = Date.now();
+          _statusBusiness.update(statusId, result, (err, result) => {
+            if (err) return reject(err);
+            else resolve(result);
+          });
+        }
+      });
+    });
+  }
   unlikeStatus(statusId) {
     return new Promise((resolve, reject) => {
       let _statusBusiness = new StatusBusiness();
@@ -49,7 +65,6 @@ class StatusService {
       });
     });
   }
-  commentStatus() {}
 }
 
 export = StatusService;

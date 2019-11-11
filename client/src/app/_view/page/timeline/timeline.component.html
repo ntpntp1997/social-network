@@ -1,4 +1,4 @@
-<div class="theme-layout">
+<div class="theme-layout" *ngIf="dataAvible">
     <section>
         <div class="feature-photo">
             <figure>
@@ -19,7 +19,7 @@
                 <div class="row merged">
                     <div class="col-lg-2 col-sm-3">
                         <div class="user-avatar">
-                            <figure>
+                            <figure *ngIf="this.UserInfo.avatar">
                                 <img src="http://localhost:3000/{{
                                         this.UserInfo.avatar
                                     }}" alt="" />

@@ -5,6 +5,7 @@ import { transErrors } from "../lang/vi";
 import ICommentModel from "../models/interfaces/commentModel";
 import IUserInfo from "../entities/userInfo";
 import JwtUtil from "./../utils/jwt.Utils";
+import StatusService from "./../services/statusService";
 
 class CommentController implements IBaseController<CommentBusiness> {
   constructor() {}
@@ -21,6 +22,8 @@ class CommentController implements IBaseController<CommentBusiness> {
       let user: IUserInfo = <IUserInfo>await utils.getUserinfo(userId);
       item.user_id = userId;
       item.user_info = user;
+      let comm = new StatusService();
+      await comm.commentStatus(req.body.status_id);
       commentBusiness.create(item, (err, result) => {
         if (err) res.status(500).send({ message: transErrors.server_error });
         else res.status(200).send(result);

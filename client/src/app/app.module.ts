@@ -29,6 +29,7 @@ import {
 } from './_core/guard/auth-guard.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { MainModule } from './_view/page/main-layout/main/main.module';
 
 declare var $: any;
 console.log(`jQuery version: ${$.fn.jquery}`);

@@ -128,6 +128,7 @@ export class StatusContentComponent implements OnInit {
         this.req.requestHttp('post', 'comment', this.bo).subscribe(d => {
             this.statusS.addCommentwithID(id, d);
             console.log(this.comment);
+            _.update(this.status[id][0], 'comment_amount', n => n + 1);
         });
     }
 }

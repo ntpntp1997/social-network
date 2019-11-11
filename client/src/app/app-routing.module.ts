@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { NewfeedComponent } from './_view/page/newfeed/newfeed.component';
 import { AuthComponent } from './_view/page/auth/auth.component';
 import { TimelineComponent } from './_view/page/timeline/timeline.component';
@@ -9,6 +9,7 @@ import { MainLayoutComponent } from './_view/page/main-layout/main-layout.compon
 import { VideoComponent } from './_view/page/timeline/video/video.component';
 import { FriendComponent } from './_view/page/timeline/friend/friend.component';
 import { MessagesComponent } from './_view/page/messages/messages.component';
+import { MainModule } from './_view/page/main-layout/main/main.module';
 import {
     AuthGuardService,
     LoginGuardService,
@@ -19,39 +20,7 @@ const routes: Routes = [
         path: '',
         component: MainLayoutComponent,
         canActivate: [AuthGuardService],
-        children: [
-            {
-                path: '',
-                pathMatch: 'full',
-                component: NewfeedComponent,
-            },
-            {
-                path: 'profile/:id',
-                component: TimelineComponent,
-                children: [
-                    {
-                        path: '',
-                        component: MainComponent,
-                    },
-                    {
-                        path: 'album',
-                        component: AlbumComponent,
-                    },
-                    {
-                        path: 'video',
-                        component: VideoComponent,
-                    },
-                    {
-                        path: 'friends',
-                        component: FriendComponent,
-                    },
-                ],
-            },
-            {
-                path: 'message',
-                component: MessagesComponent,
-            },
-        ],
+        loadChildren: './_view/page/main-layout/main/main.module#MainModule',
     },
     {
         path: 'login',

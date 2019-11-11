@@ -86,8 +86,8 @@
 
                 <ul class="we-comet" >
                     <ng-container *ngIf="this.comment[item._id]; else elseTemplate" >
-                        <li *ngFor="let ite of this.comment[item._id]" >
-                            <div *ngFor="let it of ite"><div class="comet-avatar">
+                        <li *ngFor="let ite of this.comment[item._id]" style="margin-bottom: 0px">
+                            <div *ngFor="let it of ite" style="margin-bottom: 20px"><div class="comet-avatar">
                                     <img src="http://localhost:3000/{{this.it.user_info.avatar}}" alt="">
                                 </div>
                                 <div class="we-comment">

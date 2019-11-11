@@ -17,7 +17,7 @@ export class StatusService {
     }
     addStatus(item) {
         if (this.status[item._id]) {
-            this.status[item._id].unshift(item);
+            // this.status[item._id].unshift(item);
         } else {
             this.status[item._id] = [item];
         }
