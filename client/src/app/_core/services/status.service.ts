@@ -29,6 +29,13 @@ export class StatusService {
             this.comment[item._id] = [comment];
         }
     }
+    addCommentwithID(id, comment) {
+        if (this.comment[id]) {
+            this.comment[id].unshift([comment]);
+        } else {
+            this.comment[id] = [[comment]];
+        }
+    }
     addStatusId(id) {
         this.statusId.unshift(id);
     }

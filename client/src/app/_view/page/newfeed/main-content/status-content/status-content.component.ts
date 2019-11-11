@@ -17,14 +17,16 @@ export class StatusContentComponent implements OnInit {
     public UserInfo;
     public key;
     public show;
+    public bo = {
+        status_id: '',
+        content: '',
+    };
     constructor(
         private req: RequestJWTService,
         private auth: AuthenticationService,
         private route: Router,
         private statusS: StatusService
-    ) {
-        this.getStatus();
-    }
+    ) {}
 
     ngOnInit() {
         this.statusS.IstatusId.subscribe(d => {
@@ -83,7 +85,8 @@ export class StatusContentComponent implements OnInit {
                                     comment => {
                                         this.statusS.addComment(item, comment);
                                         this.show = true;
-                                        console.log(this.show);
+
+                                        console.log(this.comment);
                                     },
                                     err => {
                                         // if (this.comment[item._id]) {
@@ -117,5 +120,14 @@ export class StatusContentComponent implements OnInit {
             }
         });
     }
-    commentStatus() {}
+    onKey(event: any) {
+        this.bo.content = event.target.value;
+    }
+    commentStatus(id) {
+        this.bo.status_id = id;
+        this.req.requestHttp('post', 'comment', this.bo).subscribe(d => {
+            this.statusS.addCommentwithID(id, d);
+            console.log(this.comment);
+        });
+    }
 }

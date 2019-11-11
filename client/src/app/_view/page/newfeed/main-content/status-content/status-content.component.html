@@ -1,6 +1,6 @@
 <div class="loadMore">
     <div class="central-meta item" *ngFor="let a of this.statusId">
-        <div class="user-post" *ngFor="let item of this.status[a]" >
+        <div class="user-post" *ngFor="let item of this.status[a]">
             <div class="friend-info">
                 <figure>
                     <img src="http://localhost:3000/{{item.user_info.avatar}}" alt="">
@@ -83,136 +83,59 @@
                 </div>
             </div>
             <div class="coment-area">
-                <ng-container *ngIf="this.comment[item._id]; else elseTemplate">
-                    <ul class="we-comet">
-                        <li *ngFor="let it of this.comment[item._id]">
-                            <div class="comet-avatar">
-                                <img src="assets/images/resources/comet-1.jpg" alt="">
-                            </div>
-                            <div class="we-comment">
-                                <div class="coment-head">
-                                    <h5><a href="time-line.html" title="">Jason borne</a></h5>
-                                    <span>1 year ago</span>
-                                    <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                </div>
-                                <p>we are working for the dance and sing songs. this car is very awesome for the youngster. please vote this car and like our post</p>
-                            </div>
 
-
-                            <!-- <ul>
-                                        <li>
-                                            <div class="comet-avatar">
-                                                <img src="assets/images/resources/comet-2.jpg" alt="">
-                                            </div>
-                                            <div class="we-comment">
-                                                <div class="coment-head">
-                                                    <h5><a href="time-line.html" title="">alexendra dadrio</a></h5>
-                                                    <span>1 month ago</span>
-                                                    <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                                </div>
-                                                <p>yes, really very awesome car i see the features of this car in the official website of <a href="#" title="">#Mercedes-Benz</a> and really impressed :-)</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="comet-avatar">
-                                                <img src="assets/images/resources/comet-3.jpg" alt="">
-                                            </div>
-                                            <div class="we-comment">
-                                                <div class="coment-head">
-                                                    <h5><a href="time-line.html" title="">Olivia</a></h5>
-                                                    <span>16 days ago</span>
-                                                    <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                                </div>
-                                                <p>i like lexus cars, lexus cars are most beautiful with the awesome features, but this car is really outstanding than lexus</p>
-                                            </div>
-                                        </li>
-                                    </ul> -->
-                        </li>
-                        <li>
-                            <div class="comet-avatar">
-                                <img src="assets/images/resources/comet-1.jpg" alt="">
-                            </div>
-                            <div class="we-comment">
-                                <div class="coment-head">
-                                    <h5><a href="time-line.html" title="">Donald Trump</a></h5>
-                                    <span>1 week ago</span>
-                                    <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                <ul class="we-comet" >
+                    <ng-container *ngIf="this.comment[item._id]; else elseTemplate" >
+                        <li *ngFor="let ite of this.comment[item._id]" >
+                            <div *ngFor="let it of ite"><div class="comet-avatar">
+                                    <img src="http://localhost:3000/{{this.it.user_info.avatar}}" alt="">
                                 </div>
-                                <p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel
-                                    <i class="em em-smiley"></i>
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#" title="" class="showmore underline">more comments</a>
-                        </li>
-                        <li class="post-comment">
-                            <div class="comet-avatar">
-                                <img src="http://localhost:3000/{{this.UserInfo.avatar}}" alt="">
-                            </div>
-                            <div class="post-comt-box">
-                                <form method="post">
-                                    <textarea placeholder="Post your comment"></textarea>
-                                    <div class="add-smiles">
-                                        <span class="em em-expressionless" title="add icon"></span>
+                                <div class="we-comment">
+                                    <div class="coment-head">
+                                        <h5><a href="time-line.html" title="">{{ it.user_info.firstname}} {{ it.user_info.lastname}}</a></h5>
+                                        <span>{{it.create_at| date:'M/d/yy, h:mm a'}}</span>
+                                        <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
                                     </div>
-                                    <div class="smiles-bunch">
-                                        <i class="em em---1"></i>
-                                        <i class="em em-smiley"></i>
-                                        <i class="em em-anguished"></i>
-                                        <i class="em em-laughing"></i>
-                                        <i class="em em-angry"></i>
-                                        <i class="em em-astonished"></i>
-                                        <i class="em em-blush"></i>
-                                        <i class="em em-disappointed"></i>
-                                        <i class="em em-worried"></i>
-                                        <i class="em em-kissing_heart"></i>
-                                        <i class="em em-rage"></i>
-                                        <i class="em em-stuck_out_tongue"></i>
-                                    </div>
-                                    <button type="submit"></button>
-                                </form>
-                            </div>
+                                    <p>{{it.content}}</p>
+                                </div></div>
+                            
                         </li>
-                    </ul>
-                </ng-container>
-                <ng-template #elseTemplate>
-                    <ul class="we-comet">
+                    </ng-container>
+                    <ng-template #elseTemplate>
                         <li>
                             <p>Bài viết chưa có bình luận</p>
                         </li>
-                        <li class="post-comment">
-                            <div class="comet-avatar">
-                                <img src="http://localhost:3000/{{this.UserInfo.avatar}}" alt="">
-                            </div>
-                            <div class="post-comt-box">
-                                <form method="post">
-                                    <textarea placeholder="Post your comment"></textarea>
-                                    <div class="add-smiles">
-                                        <span class="em em-expressionless" title="add icon"></span>
-                                    </div>
-                                    <div class="smiles-bunch">
-                                        <i class="em em---1"></i>
-                                        <i class="em em-smiley"></i>
-                                        <i class="em em-anguished"></i>
-                                        <i class="em em-laughing"></i>
-                                        <i class="em em-angry"></i>
-                                        <i class="em em-astonished"></i>
-                                        <i class="em em-blush"></i>
-                                        <i class="em em-disappointed"></i>
-                                        <i class="em em-worried"></i>
-                                        <i class="em em-kissing_heart"></i>
-                                        <i class="em em-rage"></i>
-                                        <i class="em em-stuck_out_tongue"></i>
-                                    </div>
-                                    <button type="submit"></button>
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
-                </ng-template>
-
-
+                    </ng-template>
+                    <li class="post-comment">
+                        <div class="comet-avatar">
+                            <img src="http://localhost:3000/{{this.UserInfo.avatar}}" alt="">
+                        </div>
+                        <div class="post-comt-box">
+                            <form (submit)="commentStatus(item._id)">
+                                <input type="hidden" [(ngModel)]="this.bo.status_id" name="status_id" value="{{item._id}}" />
+                                <textarea (keyup)="onKey($event)" name="content" placeholder="Post your comment"></textarea>
+                                <div class="add-smiles">
+                                    <span class="em em-expressionless" title="add icon"></span>
+                                </div>
+                                <div class="smiles-bunch">
+                                    <i class="em em---1"></i>
+                                    <i class="em em-smiley"></i>
+                                    <i class="em em-anguished"></i>
+                                    <i class="em em-laughing"></i>
+                                    <i class="em em-angry"></i>
+                                    <i class="em em-astonished"></i>
+                                    <i class="em em-blush"></i>
+                                    <i class="em em-disappointed"></i>
+                                    <i class="em em-worried"></i>
+                                    <i class="em em-kissing_heart"></i>
+                                    <i class="em em-rage"></i>
+                                    <i class="em em-stuck_out_tongue"></i>
+                                </div>
+                                <button type="submit">Đăng</button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

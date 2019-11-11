@@ -5,19 +5,25 @@
     </div>
 
     <div class="top-area">
-        <div class="searched active">
+        <div class="searched active" style="position: relative;">
             <form method="post" class="form-search active">
                 <input
                     type="text"
                     placeholder="Search Friend"
                     [(ngModel)]="this.m"
+                    name="values"
                     (keyup)="onKey($event)"
                 />
                 <button data-ripple><i class="ti-search"></i></button>
             </form>
-            <div ng *ngIf="ortUser" style="background-color: #fff;">
+            <div
+                ng
+                *ngIf="ortUser"
+                class="ass"
+                style="background-color: #fff; position: absolute; top: 60px; left: 0; display: none;"
+            >
                 <ul class="friendz-list" style="list-style: none;">
-                    <li *ngFor="let item of ortUser">
+                    <li *ngFor="let item of ortUser" (click)="clear()">
                         <a
                             [routerLink]="['/profile', item._id]"
                             routerLinkActive="router-link-active"

@@ -18,6 +18,10 @@ export class MainComponent implements OnInit {
     public UserInfo;
     public key;
     public show;
+    public bo = {
+        status_id: '',
+        content: '',
+    };
     constructor(
         private req: RequestJWTService,
         private auth: AuthenticationService,
@@ -26,7 +30,8 @@ export class MainComponent implements OnInit {
     ) {
         this.Arouter.params.subscribe(params => {
             this.paramss = params.id;
-            this.ngOnInit(); // reset and set based on new parameter this time
+            this.ngOnInit();
+            this.getStatus(); // reset and set based on new parameter this time
         });
     }
 
@@ -70,7 +75,19 @@ export class MainComponent implements OnInit {
                                 )
                                 .subscribe(
                                     comment => {
-                                        this.comment[item._id] = [comment];
+                                        comment.forEach(element => {
+                                            if (this.comment[item._id]) {
+                                                this.comment[item._id].unshift(
+                                                    element
+                                                );
+                                            } else {
+                                                this.comment[item._id] = [
+                                                    element,
+                                                ];
+                                            }
+                                        });
+
+                                        console.log(this.comment);
                                     },
                                     err => {
                                         // if (this.comment[item._id]) {
@@ -102,6 +119,20 @@ export class MainComponent implements OnInit {
                 _.update(this.status[id][0], 'like_amount', n => n + 1);
                 _.update(this.status[id][0], 'liked', n => (n = true));
             }
+        });
+    }
+    onKey(event: any) {
+        this.bo.content = event.target.value;
+    }
+    commentStatus(id) {
+        this.bo.status_id = id;
+        this.req.requestHttp('post', 'comment', this.bo).subscribe(d => {
+            if (this.comment[id]) {
+                this.comment[id].unshift(d);
+            } else {
+                this.comment[id] = [d];
+            }
+            console.log(this.comment);
         });
     }
 }
