@@ -4,7 +4,7 @@
         <div id="searchDir"></div>
         <ul id="people-list" class="friendz-list">
             <li *ngFor="let item of this.friendlist">
-                <ng-container *ngIf="this.me._id == this.item.user_id; else elseTemplate">
+                <ng-container *ngIf="this.me.id == this.item.user_id; else elseTemplate">
                     <figure>
                         <img src="http://localhost:3000/{{
                                 this.item.friend_info.avatar

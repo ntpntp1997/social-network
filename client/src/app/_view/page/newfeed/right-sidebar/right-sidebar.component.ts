@@ -21,6 +21,7 @@ export class RightSidebarComponent implements OnInit {
             data => {
                 this.friendlist = data;
                 console.log(this.friendlist);
+                console.log(this.me.id);
             },
             err => {
                 console.log(err);
