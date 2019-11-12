@@ -9,6 +9,12 @@ class RelationshipSchema {
     let schema = (mongoose.Schema = {
       user_id: { type: String },
       friend_id: { type: String },
+      user_info: {
+        username: { type: String },
+        avatar: { type: String },
+        firstname: { type: String },
+        lastname: { type: String }
+      },
       friend_info: {
         username: { type: String },
         avatar: { type: String },

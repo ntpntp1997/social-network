@@ -6,7 +6,7 @@
                     <img src="http://localhost:3000/{{item.user_info.avatar}}" alt="">
                 </figure>
                 <div class="friend-name">
-                    <ins><a [routerLink]="['/profile', item.user_id]" routerLinkActive="router-link-active"  title="">{{ item.user_info.firstname}} {{ item.user_info.lastname}}</a></ins>
+                    <ins><a [routerLink]="['/user/profile/', item.user_id]" routerLinkActive="router-link-active"  title="">{{ item.user_info.firstname}} {{ item.user_info.lastname}}</a></ins>
                     <span>published: {{ item.create_at | date:'M/d/yy, h:mm a' }}</span>
                 </div>
                 <div class="post-meta">
@@ -88,11 +88,11 @@
                     <ng-container *ngIf="this.comment[item._id]; else elseTemplate" >
                         <li *ngFor="let ite of this.comment[item._id]" style="margin-bottom: 0px">
                             <div *ngFor="let it of ite" style="margin-bottom: 20px"><div class="comet-avatar">
-                                    <img src="http://localhost:3000/{{this.it.user_info.avatar}}" alt="">
+                                    <img src="http://localhost:3000/{{this.it.user_info.avatar}}" width="40px" height="40px" alt="">
                                 </div>
                                 <div class="we-comment">
                                     <div class="coment-head">
-                                        <h5><a href="time-line.html" title="">{{ it.user_info.firstname}} {{ it.user_info.lastname}}</a></h5>
+                                        <h5><a [routerLink]="['/user/profile',this.it.user_id]" routerLinkActive="router-link-active"  title="">{{ it.user_info.firstname}} {{ it.user_info.lastname}}</a></h5>
                                         <span>{{it.create_at| date:'M/d/yy, h:mm a'}}</span>
                                         <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
                                     </div>
@@ -113,7 +113,7 @@
                         <div class="post-comt-box">
                             <form (submit)="commentStatus(item._id)">
                                 <input type="hidden" [(ngModel)]="this.bo.status_id" name="status_id" value="{{item._id}}" />
-                                <textarea (keyup)="onKey($event)" name="content" placeholder="Post your comment"></textarea>
+                                <input (keyup)="onKey($event)"[(ngModel)]="this.bo.content" name="content" placeholder="viết bình luận của bạn" class="post-input-comment"/>
                                 <div class="add-smiles">
                                     <span class="em em-expressionless" title="add icon"></span>
                                 </div>
@@ -131,7 +131,7 @@
                                     <i class="em em-rage"></i>
                                     <i class="em em-stuck_out_tongue"></i>
                                 </div>
-                                <button type="submit">Đăng</button>
+                                <button type="submit"></button>
                             </form>
                         </div>
                     </li>

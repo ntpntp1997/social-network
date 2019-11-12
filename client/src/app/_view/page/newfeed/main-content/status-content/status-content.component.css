@@ -1,0 +1,8 @@
+.post-input-comment {
+    width: 100%;
+    height: 100%;
+    box-shadow: none;
+    border: 1px solid #ede9e9;
+    outline: none;
+    padding: 15px;
+}

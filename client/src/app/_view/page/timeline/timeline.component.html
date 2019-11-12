@@ -5,8 +5,14 @@
                 <img src="assets/images/resources/timeline-1.jpg" alt="" />
             </figure>
             <div *ngIf="!isUser" class="add-btn">
-                <span>1205 followers</span>
-                <a href="#" title="" data-ripple="">Add Friend</a>
+                <ng-container *ngIf="this.friend.length > 0; else elseTemplate">
+                    <a *ngFor="let item of this.friend">{{
+                        this.item.status
+                    }}</a>
+                </ng-container>
+                <ng-template #elseTemplate>
+                    <a (click)="addFriend(user._id)">Add Friend</a>
+                </ng-template>
             </div>
             <form *ngIf="isUser" class="edit-phto">
                 <i class="fa fa-camera-retro"></i>
@@ -42,44 +48,44 @@
                                     </h5>
                                 </li>
                                 <li>
-                                    <a class="active" href="time-line.html" title="" data-ripple="">time line</a
+                                    <a [routerLink]="[
+                                            '/user/profile',
+                                            user._id
+                                        ]" routerLinkActive="active" title=" " data-ripple=" ">time line</a
                                     >
-                                    <a
-                                        class=""
-                                        href="timeline-photos.html"
-                                        title=""
-                                        data-ripple=""
+                                    <a class=" " title=" " data-ripple=" "
                                         >Photos</a
                                     >
-                                    <a
-                                        class=""
-                                        href="timeline-videos.html"
-                                        title=""
-                                        data-ripple=""
+                                    <a class=" " title=" " data-ripple=" "
                                         >Videos</a
                                     >
                                     <a
-                                        class=""
-                                        href="timeline-friends.html"
-                                        title=""
-                                        data-ripple=""
+                                        class=" "
+                                        [routerLink]="['friends', user._id]"
+                                        routerLinkActive="active "
+                                        title=" "
+                                        data-ripple=" "
                                         >Friends</a
                                     >
                                     <a
-                                        class=""
-                                        href="timeline-groups.html"
-                                        title=""
-                                        data-ripple=""
+                                        class=" "
+                                        href="timeline-groups.html "
+                                        title=" "
+                                        data-ripple=" "
                                         >Groups</a
                                     >
                                     <a
-                                        class=""
-                                        href="about.html"
-                                        title=""
-                                        data-ripple=""
+                                        class=" "
+                                        href="about.html "
+                                        title=" "
+                                        data-ripple=" "
                                         >about</a
                                     >
-                                    <a class="" href="#" title="" data-ripple=""
+                                    <a
+                                        class=" "
+                                        href="# "
+                                        title=" "
+                                        data-ripple=" "
                                         >more</a
                                     >
                                 </li>
@@ -93,20 +99,20 @@
     <!-- top area -->
 
     <section>
-        <div class="gap gray-bg">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="row" id="page-contents">
-                            <div class="col-lg-3">
+        <div class="gap gray-bg ">
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-lg-12 ">
+                        <div class="row " id="page-contents ">
+                            <div class="col-lg-3 ">
                                 <app-left-sidebar></app-left-sidebar>
                             </div>
                             <!-- sidebar -->
-                            <div class="col-lg-6">
-                                <app-main></app-main>
+                            <div class="col-lg-6 ">
+                                <router-outlet></router-outlet>
                             </div>
                             <!-- centerl meta -->
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 ">
                                 <app-right-sidebar></app-right-sidebar>
                             </div>
                             <!-- sidebar -->

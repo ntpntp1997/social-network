@@ -21,6 +21,7 @@ class RelationshipController implements IBaseController<RelationshipBusiness> {
       let friend: IUserModel = <IUserModel>(
         await utils.getUserinfo(relation.friend_id)
       );
+      relation.user_info = <IUserInfo>user;
       relation.friend_info = <IUserInfo>friend;
       relation.status = "follow";
       const relationshipBusiness = new RelationshipBusiness();
@@ -100,6 +101,31 @@ class RelationshipController implements IBaseController<RelationshipBusiness> {
     try {
       const relationshipBusiness = new RelationshipBusiness();
       let list = await relationshipBusiness.friendlist(req["decoded"].id);
+      return res.status(200).send(list);
+    } catch (e) {
+      console.log(e);
+      return res.status(500).send(e);
+    }
+  }
+  async reqlist(req: express.Request, res: express.Response) {
+    try {
+      const relationshipBusiness = new RelationshipBusiness();
+      let list = await relationshipBusiness.requestlist(req["decoded"].id);
+      return res.status(200).send(list);
+    } catch (e) {
+      console.log(e);
+      return res.status(500).send(e);
+    }
+  }
+  async friendStatus(req: express.Request, res: express.Response) {
+    try {
+      const relationshipBusiness = new RelationshipBusiness();
+      console.log(req.params["_id"]);
+      console.log(req["decoded"].id);
+      let list = await relationshipBusiness.friendStatus(
+        req.params["_id"],
+        req["decoded"].id
+      );
       return res.status(200).send(list);
     } catch (e) {
       console.log(e);

@@ -12,6 +12,7 @@ class UserSchema {
       firstname: { type: String, required: true },
       lastname: { type: String, required: true },
       username: { type: String, required: true, unique: true },
+      gender: { type: String, required: true },
       password: { type: String, required: true },
       phone: { type: String, default: null },
       address: { type: String, default: null },

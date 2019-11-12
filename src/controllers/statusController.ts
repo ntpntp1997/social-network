@@ -121,10 +121,8 @@ class StatusController implements IBaseController<StatusBusiness> {
   async getbyuserId(req: express.Request, res: express.Response) {
     try {
       let id = req.params._id;
-      console.log(id);
       let statusBusiness = new StatusBusiness();
       let item = await statusBusiness.getbyUserId(id);
-      console.log(item);
       return res.status(200).send(item);
     } catch (error) {
       console.log(error);

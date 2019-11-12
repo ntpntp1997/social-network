@@ -1,0 +1,3 @@
+class SocketIO {
+  constructor(parameters) {}
+}

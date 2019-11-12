@@ -52,8 +52,32 @@ class RelationshipBusiness implements IRelationshipBusiness {
   friendlist(id: string) {
     return new Promise(async (resolve, reject) => {
       try {
-        console.log(id);
         let list = await this._relationshipRepository.friendlist(id);
+        resolve(list);
+      } catch (error) {
+        console.log(error);
+        return reject(error);
+      }
+    });
+  }
+  requestlist(id: string) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let list = await this._relationshipRepository.requestList(id);
+        resolve(list);
+      } catch (error) {
+        console.log(error);
+        return reject(error);
+      }
+    });
+  }
+  friendStatus(friendid: string, userid: string) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let list = await this._relationshipRepository.friendstatus(
+          friendid,
+          userid
+        );
         resolve(list);
       } catch (error) {
         console.log(error);

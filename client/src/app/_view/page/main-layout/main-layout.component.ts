@@ -44,7 +44,6 @@ export class MainLayoutComponent implements OnInit {
     }
     ngOnInit() {
         this.getUserInfo();
-        this.getStatus();
     }
     public share(item) {
         this.statusId.push(item._id);

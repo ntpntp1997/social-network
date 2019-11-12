@@ -8,6 +8,7 @@ import { AlbumComponent } from '../../timeline/album/album.component';
 import { VideoComponent } from '../../timeline/video/video.component';
 import { FriendComponent } from '../../timeline/friend/friend.component';
 import { MessagesComponent } from '../../messages/messages.component';
+import { MainaComponent } from '../../timeline/main/main.component';
 
 export const routes: Routes = [
     {
@@ -16,23 +17,23 @@ export const routes: Routes = [
         component: NewfeedComponent,
     },
     {
-        path: 'profile/:id',
+        path: 'user/profile/:id',
         component: TimelineComponent,
         children: [
             {
                 path: '',
-                component: MainComponent,
+                component: MainaComponent,
             },
             {
-                path: 'album',
+                path: 'album/:id',
                 component: AlbumComponent,
             },
             {
-                path: 'video',
+                path: 'video/:id',
                 component: VideoComponent,
             },
             {
-                path: 'friends',
+                path: 'friends/:id',
                 component: FriendComponent,
             },
         ],

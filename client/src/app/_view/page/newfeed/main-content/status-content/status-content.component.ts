@@ -29,6 +29,7 @@ export class StatusContentComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        this.getStatus();
         this.statusS.IstatusId.subscribe(d => {
             this.statusId = d;
         });
@@ -130,5 +131,6 @@ export class StatusContentComponent implements OnInit {
             console.log(this.comment);
             _.update(this.status[id][0], 'comment_amount', n => n + 1);
         });
+        this.bo.content = '';
     }
 }

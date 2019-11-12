@@ -9,7 +9,7 @@ import { MessagesComponent } from './_view/page/messages/messages.component';
 import { FriendComponent } from './_view/page/timeline/friend/friend.component';
 import { AlbumComponent } from './_view/page/timeline/album/album.component';
 import { VideoComponent } from './_view/page/timeline/video/video.component';
-import { MainComponent } from './_view/page/timeline/main/main.component';
+import { MainaComponent } from './_view/page/timeline/main/main.component';
 import { NewfeedComponent } from './_view/page/newfeed/newfeed.component';
 import { TimelineComponent } from './_view/page/timeline/timeline.component';
 import { LeftSidebarComponent } from './_view/page/newfeed/left-sidebar/left-sidebar.component';
@@ -44,7 +44,7 @@ console.log(`jQuery version: ${$.fn.jquery}`);
         FriendComponent,
         AlbumComponent,
         VideoComponent,
-        MainComponent,
+        MainaComponent,
         LeftSidebarComponent,
         RightSidebarComponent,
         MainContentComponent,

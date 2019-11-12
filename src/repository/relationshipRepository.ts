@@ -15,8 +15,34 @@ class RelationshipRepositpry extends RepositoryBase<IRelationshipModel> {
       ]
     });
   }
+  friendstatus(friendid, userid) {
+    return this._model.find({
+      $or: [
+        {
+          $and: [{ friend_id: friendid }, { user_id: userid }]
+        },
+        {
+          $and: [{ friend_id: userid }, { user_id: friendid }]
+        }
+      ]
+    });
+  }
   friendlist(id) {
-    return this._model.find({ user_id: id });
+    return this._model.find({
+      $or: [
+        {
+          $and: [{ user_id: id }, { status: "friend" }]
+        },
+        {
+          $and: [{ friend_id: id }, { status: "friend" }]
+        }
+      ]
+    });
+  }
+  requestList(id) {
+    return this._model.find({
+      $and: [{ friend_id: id }, { status: "follow" }]
+    });
   }
 }
 export = RelationshipRepositpry;

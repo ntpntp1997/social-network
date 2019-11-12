@@ -24,7 +24,7 @@
                 <ul class="friendz-list" style="list-style: none;">
                     <li *ngFor="let item of ortUser" (click)="clear()">
                         <a
-                            [routerLink]="['/profile', item._id]"
+                            [routerLink]="['/user/profile', item._id]"
                             routerLinkActive="router-link-active"
                             title=""
                         >
@@ -276,7 +276,8 @@
 </li>
 </ul>
 <div class="user-img">
-    <img *ngIf="this.user.avatar" src="http://localhost:3000/{{ this.user.avatar }}" width="40px" height="40px" alt="" />
+    <a [routerLink]="['/user/profile', this.user._id]" routerLinkActive="router-link-active">
+        <img *ngIf="this.user.avatar" src="http://localhost:3000/{{ this.user.avatar }}" width="40px" height="40px" alt="" /></a>
     <span class="status f-online"></span>
     <div class="user-setting">
         <a href="#" title=""><span class="status f-online"></span>online</a

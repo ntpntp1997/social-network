@@ -1,1 +1,164 @@
-<p>friend works!</p>
+<div class="central-meta" *ngIf="dataIsReady">
+    <div class="frnds">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="active" href="#frends" data-toggle="tab">My Friends</a
+                >
+                <span>{{ this.friendCount }}</span>
+            </li>
+            <li class="nav-item">
+                <a class="" href="#frends-req" data-toggle="tab"
+                    >Friend Requests</a
+                ><span>{{ this.reqCount }}</span>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active fade show " id="frends">
+                <ul class="nearby-contct">
+                    <li *ngFor="let item of this.friendlist">
+                        <ng-container
+                            *ngIf="
+                                this.me._id == item.user_id;
+                                else elseTemplate
+                            "
+                        >
+                            <div class="nearly-pepls">
+                                <figure>
+                                    <a
+                                        [routerLink]="[
+                                            '/user/profile',
+                                            this.item.user_id
+                                        ]"
+                                        routerLinkActive="router-link-active"
+                                        title=""
+                                        ><img
+                                            src="http://localhost:3000/{{
+                                                this.item.user_info.avatar
+                                            }}"
+                                            alt=""
+                                    /></a>
+                </figure>
+                <div class="pepl-info">
+                    <h4>
+                        <a href="time-line.html" title="">{{
+                                                this.item.user_info.firstname
+                                            }}
+                                            {{
+                                                this.item.user_info.lastname
+                                            }}</a
+                                        >
+                                    </h4>
+                                    <span
+                                        >@{{
+                                            this.item.user_info.username
+                                        }}</span
+                                    >
+                                    <a
+                                        href="#"
+                                        title=""
+                                        class="add-butn more-action"
+                                        data-ripple=""
+                                        >unfriend</a
+                                    >
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-template #elseTemplate>
+                            <div class="nearly-pepls">
+                                <figure>
+                                    <a
+                                        [routerLink]="[
+                                            '/user/profile',
+                                            this.item.friend_id
+                                        ]"
+                                        routerLinkActive="router-link-active"
+                                        title=""
+                                        ><img
+                                            src="http://localhost:3000/{{
+                                                this.item.friend_info.avatar
+                                            }}"
+                                            alt=""
+                                    /></a>
+                        </figure>
+                        <div class="pepl-info">
+                            <h4>
+                                <a href="time-line.html" title="">{{
+                                                this.item.friend_info.firstname
+                                            }}
+                                            {{
+                                                this.item.friend_info.lastname
+                                            }}</a
+                                        >
+                                    </h4>
+                                    <span
+                                        >@{{
+                                            this.item.friend_info.username
+                                        }}</span
+                                    >
+                                    <a
+                                        href="#"
+                                        title=""
+                                        class="add-butn more-action"
+                                        data-ripple=""
+                                        >unfriend</a
+                                    >
+                                </div>
+                            </div>
+                        </ng-template>
+                    </li>
+                </ul>
+                <div class="lodmore">
+                    <button class="btn-view btn-load-more"></button>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="frends-req">
+                <ul class="nearby-contct">
+                    <li *ngFor="let item of this.reqlist">
+                        <div class="nearly-pepls">
+                            <figure>
+                                <a
+                                    [routerLink]="[
+                                        '/user/profile',
+                                        this.item.user_id
+                                    ]"
+                                    routerLinkActive="router-link-active"
+                                    title=""
+                                    ><img
+                                        src="http://localhost:3000/{{
+                                            this.item.friend_info.avatar
+                                        }}"
+                                        alt=""
+                                /></a>
+                                </figure>
+                                <div class="pepl-info">
+                                    <h4>
+                                        <a href="time-line.html" title="">{{ this.item.user_info.firstname }}
+                                        {{ this.item.user_info.lastname }}</a
+                                    >
+                                </h4>
+                                <span>ftv model</span>
+                                <a
+                                    href="#"
+                                    title=""
+                                    class="add-butn more-action"
+                                    data-ripple=""
+                                    >delete Request</a
+                                >
+                                <a
+                                    title=""
+                                    (click)="acceptFriend(this.item._id)"
+                                    class="add-butn"
+                                    data-ripple=""
+                                    >Confirm</a
+                                >
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <button class="btn-view btn-load-more"></button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,7 +4,7 @@ import { NewfeedComponent } from './_view/page/newfeed/newfeed.component';
 import { AuthComponent } from './_view/page/auth/auth.component';
 import { TimelineComponent } from './_view/page/timeline/timeline.component';
 import { AlbumComponent } from './_view/page/timeline/album/album.component';
-import { MainComponent } from './_view/page/timeline/main/main.component';
+import { MainaComponent } from './_view/page/timeline/main/main.component';
 import { MainLayoutComponent } from './_view/page/main-layout/main-layout.component';
 import { VideoComponent } from './_view/page/timeline/video/video.component';
 import { FriendComponent } from './_view/page/timeline/friend/friend.component';

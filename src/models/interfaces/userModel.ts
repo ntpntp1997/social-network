@@ -7,6 +7,7 @@ interface IUserModel extends mongoose.Document {
   lastname: string;
   username: string;
   password: string;
+  gender: string;
   phone: string;
   address: string;
   avatar: string;

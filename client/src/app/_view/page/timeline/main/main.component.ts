@@ -10,7 +10,7 @@ import _ from 'lodash';
     templateUrl: './main.component.html',
     styleUrls: ['./main.component.css'],
 })
-export class MainComponent implements OnInit {
+export class MainaComponent implements OnInit {
     public comment = [];
     public status = [];
     public statusId = [];

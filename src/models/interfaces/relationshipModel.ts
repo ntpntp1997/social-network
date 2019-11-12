@@ -3,6 +3,12 @@ interface IRelationshipModel extends mongoose.Document {
   _id: any;
   user_id: string;
   friend_id: string;
+  user_info: {
+    username: string;
+    avatar: string;
+    firstname: string;
+    lastname: string;
+  };
   friend_info: {
     username: string;
     avatar: string;
