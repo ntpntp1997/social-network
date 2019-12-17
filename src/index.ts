@@ -1,22 +1,21 @@
 import dotenv from 'dotenv';
 import { App } from './app';
 import Session from './config/sessions/session';
-
-
-
+import express from 'express';
 
 try {
-    dotenv.config();
-    const port: string = process.env.APP_PORT || '3000';
-    const app = new App(port);    
-    app.router();
-    const session = new Session();
+  dotenv.config();
+  const port: string = process.env.APP_PORT || '3000';
+  const appa = new App(port);
+  appa.router();
+  const app = express();
+  const session = new Session();
 
-    session.config(app);
+  session.config(app);
 
-    app.initConfigAll();
+  appa.initConfigAll();
 
-    app.listen();
+  appa.listen();
 } catch (error) {
-    console.log(error);
+  console.log(error);
 }

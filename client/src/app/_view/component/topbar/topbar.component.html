@@ -127,75 +127,31 @@
                 ></a>
     </li>
     <li>
-        <a href="#" title="Notification" data-ripple="">
-            <i class="ti-bell"></i><span>20</span>
+        <a href="#" title="Notification" (click)="onClickMe()" data-ripple="">
+            <i class="ti-bell"></i><span>{{ this.notiCount }}</span>
         </a>
-        <div class="dropdowns">
-            <span>4 New Notifications</span>
+        <div class="dropdowns" id="noti">
+            <span>{{ this.notinew }} New Notifications</span>
             <ul class="drops-menu">
-                <li>
-                    <a href="notifications.html" title="">
-                        <img src="assets/images/resources/thumb-1.jpg" alt="" />
+                <li *ngFor="let item of this.noti">
+                    <a (click)="xem(item._id)" title="">
+                        <img src="http://localhost:3000/{{ item.sender_info.avatar }}" width="40px" height="40px" />
                         <div class="mesg-meta">
-                            <h6>sarah Loren</h6>
-                            <span>Hi, how r u dear ...?</span>
-                            <i>2 min ago</i>
+                            <h6>{{ item.sender_info.firstname }}</h6>
+                            <span>{{ item.content }}</span>
+                            <i>{{ item.create_at | date:'M/d/yy, h:mm a'}}</i>
                         </div>
                     </a>
-                    <span class="tag green">New</span>
-                </li>
-                <li>
-                    <a href="notifications.html" title="">
-                        <img src="assets/images/resources/thumb-2.jpg" alt="" />
-                        <div class="mesg-meta">
-                            <h6>Jhon doe</h6>
-                            <span>Hi, how r u dear ...?</span>
-                            <i>2 min ago</i>
-                        </div>
-                    </a>
-                    <span class="tag red">Reply</span>
-                </li>
-                <li>
-                    <a href="notifications.html" title="">
-                        <img src="assets/images/resources/thumb-3.jpg" alt="" />
-                        <div class="mesg-meta">
-                            <h6>Andrew</h6>
-                            <span>Hi, how r u dear ...?</span>
-                            <i>2 min ago</i>
-                        </div>
-                    </a>
-                    <span class="tag blue">Unseen</span>
-                </li>
-                <li>
-                    <a href="notifications.html" title="">
-                        <img src="assets/images/resources/thumb-4.jpg" alt="" />
-                        <div class="mesg-meta">
-                            <h6>Tom cruse</h6>
-                            <span>Hi, how r u dear ...?</span>
-                            <i>2 min ago</i>
-                        </div>
-                    </a>
-                    <span class="tag">New</span>
-                </li>
-                <li>
-                    <a href="notifications.html" title="">
-                        <img src="assets/images/resources/thumb-5.jpg" alt="" />
-                        <div class="mesg-meta">
-                            <h6>Amy</h6>
-                            <span>Hi, how r u dear ...?</span>
-                            <i>2 min ago</i>
-                        </div>
-                    </a>
-                    <span class="tag">New</span>
+                    <span *ngIf="item.is_read == false" class="tag green">New</span>
                 </li>
             </ul>
-            <a href="notifications.html" title="" class="more-mesg">view more</a
+            <a title="" class="more-mesg">view more</a
                     >
-                </div>
+        </div>
             </li>
             <li>
-                <a href="#" title="Messages" data-ripple=""
-                    ><i class="ti-comment"></i><span>12</span></a
+                <a [routerLink]="['/message']" routerLinkActive="router-link-active"  title="Messages" data-ripple=""
+                    ><i class="ti-comment"></i><span></span></a
                 >
                 <div class="dropdowns">
                     <span>5 New Messages</span>

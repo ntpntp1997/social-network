@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 interface INotificationModel extends mongoose.Document {
   _id: any;
   sender_id: string;
@@ -9,7 +9,6 @@ interface INotificationModel extends mongoose.Document {
     firstname: string;
     lastname: string;
   };
-  type: string;
   content: string;
   is_read: boolean;
   create_at: number;

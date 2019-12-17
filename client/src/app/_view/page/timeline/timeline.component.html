@@ -1,8 +1,11 @@
 <div class="theme-layout" *ngIf="dataAvible">
     <section>
         <div class="feature-photo">
-            <figure>
-                <img src="assets/images/resources/timeline-1.jpg" alt="" />
+            <figure class="img-cover">
+                <img
+                    src="http://localhost:3000/{{ this.UserInfo.cover }}"
+                    alt=""
+                />
             </figure>
             <div *ngIf="!isUser" class="add-btn">
                 <ng-container *ngIf="this.friend.length > 0; else elseTemplate">
@@ -18,22 +21,31 @@
                 <i class="fa fa-camera-retro"></i>
                 <label class="fileContainer">
                     Edit Cover Photo
-                    <input type="file" />
+                    <input type="file" (change)="saveCover($event)" />
                 </label>
             </form>
             <div class="container-fluid">
                 <div class="row merged">
                     <div class="col-lg-2 col-sm-3">
                         <div class="user-avatar">
-                            <figure *ngIf="this.UserInfo.avatar">
-                                <img src="http://localhost:3000/{{
+                            <figure
+                                *ngIf="this.UserInfo.avatar"
+                                class="img-avatar"
+                            >
+                                <img
+                                    src="http://localhost:3000/{{
                                         this.UserInfo.avatar
-                                    }}" alt="" />
+                                    }}"
+                                    alt=""
+                                />
                                 <form class="edit-phto" *ngIf="isUser">
                                     <i class="fa fa-camera-retro"></i>
                                     <label class="fileContainer">
                                         Edit Display Photo
-                                        <input type="file" />
+                                        <input
+                                            type="file"
+                                            (change)="saveAvatar($event)"
+                                        />
                                     </label>
                                 </form>
                             </figure>
@@ -48,10 +60,15 @@
                                     </h5>
                                 </li>
                                 <li>
-                                    <a [routerLink]="[
+                                    <a
+                                        [routerLink]="[
                                             '/user/profile',
                                             user._id
-                                        ]" routerLinkActive="active" title=" " data-ripple=" ">time line</a
+                                        ]"
+                                        routerLinkActive="active"
+                                        title=" "
+                                        data-ripple=" "
+                                        >time line</a
                                     >
                                     <!-- <a class=" " title=" " data-ripple=" "
                                         >Photos</a

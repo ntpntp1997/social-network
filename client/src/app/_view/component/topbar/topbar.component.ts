@@ -4,6 +4,7 @@ import { AuthenticationService } from 'src/app/_core/services/auth/authenticatio
 import { Router } from '@angular/router';
 import { UserInfoService } from '../../../_core/services/userInfo.service';
 import { async } from '@angular/core/testing';
+import _ from 'lodash';
 
 @Component({
     selector: 'app-topbar',
@@ -13,6 +14,10 @@ import { async } from '@angular/core/testing';
 export class TopbarComponent implements OnInit {
     values = '';
     key;
+    notiCount: number;
+    noti = new Array();
+    notinew = 0;
+    actionNoti = false;
     public user;
     public m;
     public ortUser;
@@ -30,6 +35,7 @@ export class TopbarComponent implements OnInit {
         });
         this.user = await this.getUserInfo();
         console.log(this.user);
+        this.getnoti();
     }
     getUserInfo() {
         return new Promise((resolve, reject) => {
@@ -68,5 +74,46 @@ export class TopbarComponent implements OnInit {
                 $('.ass').hide();
             }
         });
+    }
+
+    getnoti() {
+        this.req.requestHttp('get', '/notification').subscribe(
+            d => {
+                console.log(d);
+                this.notiCount = _.size(d);
+                this.noti = d;
+                d.forEach(element => {
+                    if (element.is_read === false) {
+                        this.notinew++;
+                    }
+                });
+            },
+            e => {
+                console.log(e);
+            }
+        );
+    }
+
+    onClickMe() {
+        if (this.actionNoti === false) {
+            $('#noti').addClass('show');
+            this.actionNoti = true;
+        } else {
+            $('#noti').removeClass('show');
+            this.actionNoti = false;
+        }
+    }
+    xem(id) {
+        const body = {
+            is_read: true,
+        };
+        this.req.requestHttp('put', `notification/${id}`, body).subscribe(
+            d => {
+                console.log(d);
+            },
+            e => {
+                console.log(e);
+            }
+        );
     }
 }

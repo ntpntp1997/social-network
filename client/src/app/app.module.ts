@@ -30,6 +30,7 @@ import {
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MainModule } from './_view/page/main-layout/main/main.module';
+import { TableListComponent } from './_view/page/table-list/table-list.component';
 
 declare var $: any;
 console.log(`jQuery version: ${$.fn.jquery}`);
@@ -54,6 +55,7 @@ console.log(`jQuery version: ${$.fn.jquery}`);
         AuthComponent,
         MainLayoutComponent,
         TopbarComponent,
+        TableListComponent,
     ],
     imports: [
         BrowserModule,

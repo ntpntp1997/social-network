@@ -12,6 +12,7 @@ import { StatusService } from '../../../../../_core/services/status.service';
     styleUrls: ['./post-status.component.css'],
 })
 export class PostStatusComponent implements OnInit {
+    public friendlist = [];
     public key;
     public user: any;
     fileData: File = null;
@@ -25,6 +26,15 @@ export class PostStatusComponent implements OnInit {
         private stasusS: StatusService
     ) {
         this.getUserInfo();
+        this.req.requestHttp('get', '/list').subscribe(
+            data => {
+                this.friendlist = data;
+                console.log(this.friendlist);
+            },
+            err => {
+                console.log(err);
+            }
+        );
     }
     fileProgress(fileInput: any) {
         // tslint:disable-next-line:whitespace && no-angle-bracket-type-assertion
@@ -52,6 +62,23 @@ export class PostStatusComponent implements OnInit {
             res.liked = false;
             this.stasusS.addStatus(res);
             this.stasusS.addStatusId(res._id);
+        });
+        this.friendlist.forEach(element => {
+            let id;
+            // tslint:disable-next-line:triple-equals
+            if (element.user_id == this.user._id) {
+                id = element.friend_id;
+            } else {
+                id = element.user_id;
+            }
+            const noti = {
+                receiver_id: id,
+                content: 'Đã đăng bài viết mới',
+            };
+            this.req.requestHttp('post', 'notification', noti).subscribe(
+                d => {},
+                e => {}
+            );
         });
     }
     ngOnInit() {}

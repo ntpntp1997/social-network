@@ -19,6 +19,7 @@ export class TimelineComponent implements OnInit {
     dataAvible = false;
     public isUser: boolean;
     public friend;
+    fileData: File = null;
     constructor(
         private userinfo: UserInfoService,
         private statusS: StatusService,
@@ -42,6 +43,16 @@ export class TimelineComponent implements OnInit {
         const body = {
             friend_id: id,
         };
+        const noti = {
+            receiver_id: id,
+            content: 'lời mời kết bạn',
+        };
+        this.req.requestHttp('post', 'notification', noti).subscribe(
+            d => {
+                alert('lời mời kết bạn đã gửi');
+            },
+            e => {}
+        );
         this.req.requestHttp('post', 'friends', body).subscribe(
             d => {
                 console.log(d);
@@ -93,6 +104,44 @@ export class TimelineComponent implements OnInit {
                 },
                 err => {
                     this.route.navigateByUrl('/');
+                    console.log(err);
+                }
+            );
+    }
+    saveAvatar(e) {
+        console.log('a');
+        this.key = this.auth.getUserDetailsWithToken();
+        this.fileData = <File>e.target.files[0];
+        console.log(this.fileData);
+        const formData = new FormData();
+        formData.append('file', this.fileData);
+        this.req.requestHttp('put', `users/${this.key.id}`, formData).subscribe(
+            res => {
+                console.log(res);
+                this.getUserInfo();
+            },
+            err => {
+                alert('upload thất bại');
+                console.log(err);
+            }
+        );
+    }
+    saveCover(e) {
+        console.log('a');
+        this.key = this.auth.getUserDetailsWithToken();
+        this.fileData = <File>e.target.files[0];
+        console.log(this.fileData);
+        const formData = new FormData();
+        formData.append('file', this.fileData);
+        this.req
+            .requestHttp('put', `userscover/${this.key.id}`, formData)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    this.getUserInfo();
+                },
+                err => {
+                    alert('upload thất bại');
                     console.log(err);
                 }
             );

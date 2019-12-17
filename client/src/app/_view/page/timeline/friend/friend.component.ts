@@ -23,6 +23,7 @@ export class FriendComponent implements OnInit {
     ngOnInit() {
         this.getFriendList();
         this.me = this.auth.getUserDetailsWithToken();
+        console.log(this.me.id);
     }
     getFriendList() {
         this.req.requestHttp('get', 'list').subscribe(d => {

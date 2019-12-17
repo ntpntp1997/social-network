@@ -1,1 +1,95 @@
-<p>messages works!</p>
+<section>
+    <div class="gap gray-bg">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row" id="page-contents">
+
+                        <div class="col-lg-12">
+                            <div class="central-meta">
+                                <div class="messages">
+                                    <h5 class="f-title"><i class="ti-bell"></i>All Messages <span class="more-options"><i class="fa fa-ellipsis-h"></i></span></h5>
+                                    <div class="message-box">
+                                        <ul class="peoples">
+
+                                            <li *ngFor="let item of friendlist">
+                                                <ng-container *ngIf="this.me.id == this.item.user_id; else elseTemplate">
+                                                    <figure (click)="chose(item._id)">
+                                                        <img src="http://localhost:3000/{{
+                                                            this.item.friend_info.avatar
+                                                        }}" alt="">
+                                                        <span class="status f-online"></span>
+                                                    </figure>
+                                                    <div class="people-name" (click)="chose(item._id)">
+                                                        <span>{{ this.item.friend_info.firstname}} {{this.item.friend_info.lastname}}</span>
+                                                    </div>
+                                                </ng-container>
+                                                <ng-template #elseTemplate>
+                                                    <figure (click)="chose(item._id)">
+                                                        <img src="http://localhost:3000/{{
+                                                            this.item.user_info.avatar
+                                                        }}" alt="">
+                                                        <span class="status f-online"></span>
+                                                    </figure>
+                                                    <div class="people-name" (click)="chose(item._id)">
+                                                        <span>{{ this.item.user_info.firstname}} {{this.item.user_info.lastname}}</span>
+                                                    </div>
+                                                </ng-template>
+
+                                            </li>
+                                        </ul>
+                                        <div class="peoples-mesg-box" *ngIf="this.info">
+                                            <ng-container *ngIf="this.me.id == this.info.user_id; else elseTemplate">
+                                                <div class="conversation-head">
+                                                    <figure><img src="http://localhost:3000/{{
+                                                        this.info.friend_info.avatar
+                                                    }}" alt=""></figure>
+                                                    <span>{{ info.friend_info.firstname}} <i>online</i></span>
+                                                </div>
+                                            </ng-container>
+                                            <ng-template #elseTemplate>
+                                                <div class="conversation-head">
+                                                    <figure><img src="http://localhost:3000/{{
+                                                        this.info.user_info.avatar
+                                                    }}" alt=""></figure>
+                                                    <span>{{ info.user_info.firstname}} <i>online</i></span>
+                                                </div>
+                                            </ng-template>
+
+                                            <ul class="chatting-area" *ngFor="let item of this.mess">
+                                                <ng-container *ngIf="this.me.id == this.item.sender_id; else elseTemplate">
+                                                    <li class="me">
+                                                        <figure><img src="http://localhost:3000/{{
+                                                            this.item.sender_info.avatar
+                                                        }}" alt=""></figure>
+                                                        <p>{{this.item.text}}</p>
+                                                    </li>
+                                                </ng-container>
+                                                <ng-template #elseTemplate>
+                                                    <li class="you">
+                                                        <figure><img src="http://localhost:3000/{{
+                                                            this.item.receiver_info.avatar
+                                                        }}" alt=""></figure>
+                                                        <p>{{this.item.text}}</p>
+                                                    </li>
+                                                </ng-template>
+                                            </ul>
+                                            <div class="message-text-container">
+                                                <form method="post">
+                                                    <textarea [(ngModel)]="this.text" name="text"></textarea>
+                                                    <button title="send" (click)="chat(this.info._id)"><i class="fa fa-paper-plane"></i></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- centerl meta -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

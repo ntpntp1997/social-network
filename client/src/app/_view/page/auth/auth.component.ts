@@ -39,7 +39,7 @@ export class AuthComponent implements OnInit {
             },
             err => {
                 console.error(err);
-                alert(err);
+                alert('Đăng nhập thất bại');
             }
         );
     }

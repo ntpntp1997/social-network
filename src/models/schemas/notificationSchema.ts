@@ -1,5 +1,5 @@
-import DataAccess = require("../../config/dataAccess/DataAccess");
-import INotificationModel = require("../interfaces/notificationModel");
+import DataAccess = require('../../config/dataAccess/DataAccess');
+import INotificationModel = require('../interfaces/notificationModel');
 
 const mongoose = DataAccess.mongooseInstance;
 const mongooseConnection = DataAccess.mongooseConnection;
@@ -15,7 +15,6 @@ class NotificationSchema {
         firstname: { type: String },
         lastname: { type: String }
       },
-      type: { type: String },
       content: { type: String },
       is_read: { type: Boolean, default: false },
       create_at: { type: Number, default: Date.now },
@@ -28,7 +27,7 @@ class NotificationSchema {
 }
 
 let schema = mongooseConnection.model<INotificationModel>(
-  "Notification",
+  'Notification',
   NotificationSchema.Schema
 );
 export = schema;

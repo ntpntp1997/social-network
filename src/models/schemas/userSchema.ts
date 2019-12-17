@@ -1,6 +1,6 @@
-import DataAccess from "../../config/dataAccess/DataAccess";
-import IUserModel = require("../interfaces/userModel");
-import Constants from "../../config/constants/Constants";
+import DataAccess from '../../config/dataAccess/DataAccess';
+import IUserModel = require('../interfaces/userModel');
+import Constants from '../../config/constants/Constants';
 
 const mongoose = DataAccess.mongooseInstance;
 const mongooseConnection = DataAccess.mongooseConnection;
@@ -16,9 +16,9 @@ class UserSchema {
       password: { type: String, required: true },
       phone: { type: String, default: null },
       address: { type: String, default: null },
-      avatar: { type: String, default: "images/user.jpg" },
-      role: [],
-      permiss: [],
+      avatar: { type: String, default: 'images/user.jpg' },
+      cover: { type: String, default: 'images/cover.jpg' },
+      role: { type: String, default: 'user' },
       create_at: { type: Number, default: Date.now },
       update_at: { type: Number, default: null },
       delete_at: { type: Number, default: null }
@@ -27,5 +27,5 @@ class UserSchema {
     return schema;
   }
 }
-var schema = mongooseConnection.model<IUserModel>("User", UserSchema.Schema);
+var schema = mongooseConnection.model<IUserModel>('User', UserSchema.Schema);
 export = schema;

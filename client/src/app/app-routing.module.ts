@@ -10,6 +10,7 @@ import { VideoComponent } from './_view/page/timeline/video/video.component';
 import { FriendComponent } from './_view/page/timeline/friend/friend.component';
 import { MessagesComponent } from './_view/page/messages/messages.component';
 import { MainModule } from './_view/page/main-layout/main/main.module';
+import { TableListComponent } from './_view/page/table-list/table-list.component';
 import {
     AuthGuardService,
     LoginGuardService,
@@ -26,6 +27,10 @@ const routes: Routes = [
         path: 'login',
         canActivate: [LoginGuardService],
         component: AuthComponent,
+    },
+    {
+        path: 'admin',
+        component: TableListComponent,
     },
 ];
 

@@ -1,0 +1,9 @@
+.img-cover {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+.user-avatar {
+    height: 280px;
+    overflow: hidden;
+}

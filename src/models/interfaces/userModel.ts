@@ -1,4 +1,4 @@
-import mongoose = require("mongoose");
+import mongoose = require('mongoose');
 
 interface IUserModel extends mongoose.Document {
   _id: any;
@@ -11,6 +11,7 @@ interface IUserModel extends mongoose.Document {
   phone: string;
   address: string;
   avatar: string;
+  cover: string;
   role: [];
   permiss: [];
   create_at: number;

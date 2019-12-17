@@ -1,6 +1,6 @@
-import express = require("express");
-import UserController from "../controllers/userController";
-import { checkJwt } from "../middleware/checkJwt.Middelware";
+import express = require('express');
+import UserController from '../controllers/userController';
+import { checkJwt } from '../middleware/checkJwt.Middelware';
 var router = express.Router();
 class UserRoutes {
   private _userController: UserController;
@@ -10,12 +10,13 @@ class UserRoutes {
   }
   get routes() {
     var controller = this._userController;
-    router.get("/users", [checkJwt], controller.retrieve);
-    router.post("/users", controller.create);
-    router.put("/users/:_id", [checkJwt], controller.update);
-    router.get("/users/:_id", [checkJwt], controller.findById);
-    router.get("/find/:value", [checkJwt], controller.findUser);
-    router.delete("/users/:_id", [checkJwt], controller.delete);
+    router.get('/users', [checkJwt], controller.retrieve);
+    router.post('/users', controller.create);
+    router.put('/users/:_id', [checkJwt], controller.update);
+    router.put('/userscover/:_id', [checkJwt], controller.updateCover);
+    router.get('/users/:_id', [checkJwt], controller.findById);
+    router.get('/find/:value', [checkJwt], controller.findUser);
+    router.delete('/users/:_id', [checkJwt], controller.delete);
 
     return router;
   }

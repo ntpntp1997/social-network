@@ -20,7 +20,7 @@
                     <li *ngFor="let item of this.friendlist">
                         <ng-container
                             *ngIf="
-                                this.me._id == item.user_id;
+                                this.me.id == item.friend_id;
                                 else elseTemplate
                             "
                         >
