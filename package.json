@@ -52,7 +52,7 @@
         "fs-extra": "^8.1.0",
         "helmet": "^3.21.2",
         "jsonwebtoken": "^8.5.1",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.21",
         "lokijs": "^1.5.8",
         "method-override": "^3.0.0",
         "mongoose": "^5.7.4",
